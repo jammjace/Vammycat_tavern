@@ -1,73 +1,24 @@
 export class ShadowSystem {
-  constructor(scene) {
-    this.scene = scene;
-    this.graphics = scene.add.graphics();
-    this.graphics.setDepth(20);
-    this.shadowCasters = [];
-    this.shadowPolygons = [];
-    this.debug = false;
+  constructor(scene){
+    this.scene=scene;this.shadowCasters=[];this.shadowPolygons=[];this.debug=false;
+    this.texture=scene.textures.createCanvas('projected-shadows',scene.level.width,scene.level.height);
+    this.image=scene.add.image(0,0,'projected-shadows').setOrigin(0).setDepth(4).setAlpha(.52);
+    this.graphics=scene.add.graphics().setDepth(4000);
   }
-
-  registerCaster(caster) {
-    this.shadowCasters.push(caster);
-  }
-
-  setDebug(enabled) {
-    this.debug = enabled;
-  }
-
-  update(sunPhase) {
-    this.graphics.clear();
-    this.graphics.fillStyle(0x1b1a18, 0.42);
-    this.shadowPolygons = [];
-
-    for (const caster of this.shadowCasters) {
-      caster.setShadowDirection(sunPhase);
-      const polygon = caster.getShadowPolygon();
-      this.shadowPolygons.push(polygon);
-
-      if (polygon.length >= 3) {
-        this.graphics.fillPoints(polygon, true);
-      }
-
-      if (this.debug) {
-        this.graphics.lineStyle(2, 0xff0000, 0.8);
-        this.graphics.strokePoints(polygon, true);
-      }
-    }
-  }
-
-  getShadowPolygons() {
-    return this.shadowCasters.map((caster) => {
-      caster.setShadowDirection(this.scene.sunSystem.sunPhase);
-      return caster.getShadowPolygon();
+  registerCaster(caster){this.shadowCasters.push(caster);}
+  setDebug(enabled){this.debug=enabled;this.lastPhase=undefined;}
+  update(phase){
+    if(this.lastPhase!==undefined&&Math.abs(phase-this.lastPhase)<.001)return;
+    this.lastPhase=phase;const c=this.texture.context;
+    c.clearRect(0,0,this.texture.width,this.texture.height);c.globalCompositeOperation='source-over';this.graphics.clear();
+    this.shadowPolygons=this.shadowCasters.map(caster=>{
+      caster.setShadowDirection(phase);caster.draw(c);const polygon=caster.getShadowPolygon();
+      if(this.debug){this.graphics.lineStyle(1,0xffc266,.7);this.graphics.strokePoints(polygon,true);}return polygon;
     });
+    // Tint the union once; overlapping shelters never accumulate opaque black.
+    c.globalCompositeOperation='source-in';c.fillStyle='#27351c';c.fillRect(0,0,this.texture.width,this.texture.height);
+    c.globalCompositeOperation='source-over';this.texture.refresh();
   }
-
-  pointInPolygon(point, polygon) {
-    if (!polygon || polygon.length === 0) {
-      return false;
-    }
-
-    let inside = false;
-
-    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-      const xi = polygon[i].x;
-      const yi = polygon[i].y;
-      const xj = polygon[j].x;
-      const yj = polygon[j].y;
-
-      const intersects = ((yi > point.y) !== (yj > point.y)) &&
-        (point.x < (xj - xi) * (point.y - yi) / (yj - yi + Number.EPSILON) + xi);
-
-      if (intersects) inside = !inside;
-    }
-
-    return inside;
-  }
-
-  isPointInAnyShadow(point) {
-    const candidates = this.shadowPolygons.length > 0 ? this.shadowPolygons : this.getShadowPolygons();
-    return candidates.some((polygon) => polygon && polygon.length >= 3 && this.pointInPolygon(point, polygon));
-  }
+  getShadowPolygons(){return this.shadowPolygons;}
+  isPointInAnyShadow(point){return this.shadowCasters.some(c=>c.contains(point));}
 }

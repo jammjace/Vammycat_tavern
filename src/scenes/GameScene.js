@@ -5,10 +5,19 @@ import { ShadowSystem } from '../systems/ShadowSystem.js';
 import { SunSystem } from '../systems/SunSystem.js';
 import { ExposureSystem } from '../systems/ExposureSystem.js';
 import { level1 } from '../levels/level1.js';
+import { GardenArt } from '../art/GardenArt.js';
+import { CampbreezePipeline } from '../art/CampbreezePipeline.js';
+import { DebugPanel } from '../systems/DebugPanel.js';
 
 export class GameScene extends Phaser.Scene {
   constructor() {
     super('GameScene');
+  }
+
+  preload() {
+    this.load.image('tree-art', `${import.meta.env.BASE_URL}assets/scenery/tree.png`);
+    this.load.image('house-art', `${import.meta.env.BASE_URL}assets/scenery/house.png`);
+    for (let i = 1; i <= 4; i++) this.load.image(`cat-${i}`, `${import.meta.env.BASE_URL}assets/cat/run-0${i}.png`);
   }
 
   create() {
@@ -22,26 +31,26 @@ export class GameScene extends Phaser.Scene {
       right: Phaser.Input.Keyboard.KeyCodes.D,
     });
 
-    this.createGarden();
+    this.art = new GardenArt(this);
     this.player = new Player(this, this.level.start.x, this.level.start.y);
     this.sunSystem = new SunSystem(this);
     this.exposureSystem = new ExposureSystem(this);
     this.shadowCasters = this.level.shadowCasters.map((data) => {
       const caster = new ShadowCaster({
+        ...data,
         scene: this,
         x: data.x,
         y: data.y,
         width: data.width,
         height: data.height,
       });
-      caster.sprite.setVisible(data.visible !== false);
       return caster;
     });
 
     this.shadowSystem = new ShadowSystem(this);
     this.isInShadow = false;
-    this.collisionDebug = false;
-    this.collisionDebugGraphics = this.add.graphics().setDepth(30);
+    this.collisionDebug = true;
+    this.collisionDebugGraphics = this.add.graphics().setDepth(4001);
     for (const caster of this.shadowCasters) {
       this.shadowSystem.registerCaster(caster);
     }
@@ -68,8 +77,8 @@ export class GameScene extends Phaser.Scene {
     });
     this.objectiveText.setDepth(100);
 
-    this.exposureBarBg = this.add.rectangle(180, 44, 180, 14, 0x301f1f).setDepth(110);
-    this.exposureBar = this.add.rectangle(180, 44, 0, 14, 0xff6b6b).setDepth(111);
+    this.exposureBarBg = this.add.rectangle(120, 34, 180, 10, 0x243528).setDepth(110);
+    this.exposureBar = this.add.rectangle(30, 34, 0, 10, 0xff6b6b).setDepth(111);
     this.exposureBar.setOrigin(0, 0.5);
 
     this.overlayText = this.add.text(640, 310, '', {
@@ -97,10 +106,17 @@ export class GameScene extends Phaser.Scene {
     this.overlaySubText.setVisible(false);
 
     this.createFish();
+    this.add.text(24, 688, 'WASD / ARROWS  Move     SCROLL  Time     SHIFT + SCROLL  Zoom     R  Restart     F2  Debug', {
+      fontFamily: 'sans-serif', fontSize: '13px', color: '#e3e7c4', backgroundColor: '#253c2ddd', padding: { x: 10, y: 5 },
+    }).setDepth(100);
 
     this.input.on('wheel', (_pointer, _currentlyOver, _deltaX, deltaY, _deltaZ) => {
+      if (_pointer.event.shiftKey || _pointer.event.ctrlKey) {
+        this.setMapZoom(this.cameras.main.zoom * Math.exp(-deltaY * .001));
+        return;
+      }
       if (this.state !== 'PLAYING') return;
-      this.sunSystem.adjust(deltaY * 0.0028);
+      this.sunSystem.adjust(deltaY * 0.0007);
     });
 
     this.input.keyboard.on('keydown-U', () => {
@@ -109,100 +125,63 @@ export class GameScene extends Phaser.Scene {
     this.input.keyboard.on('keydown-H', () => {
       if (this.state === 'PLAYING') this.sunSystem.adjust(0.05);
     });
-    this.input.keyboard.on('keydown-D', () => {
-      this.shadowSystem.setDebug(!this.shadowSystem.debug);
-      this.collisionDebug = this.shadowSystem.debug;
+    this.input.keyboard.on('keydown-F2', () => {
+      this.debugPanel.toggle();
     });
     this.input.keyboard.on('keydown-R', () => this.resetLevel());
+    for (const object of this.children.list) {
+      if (object.depth >= 100 && object.depth <= 120) object.setScrollFactor(0).setDepth(5000 + object.depth);
+    }
+    this.cameras.main.setBounds(0, 0, this.level.width, this.level.height);
+    this.cameras.main.startFollow(this.player.sprite, true, .08, .08);
+    this.cameras.main.centerOn(this.player.sprite.x, this.player.sprite.y);
+    this.art.update(this.sunSystem);
+    this.updateSafetyStatus(this.isInShadow);
+    this.updateExposureBar();
+    // A separate unzoomed UI camera keeps the clock and status fixed and unfiltered.
+    const uiObjects=this.children.list.filter(object=>object.depth>=5000);
+    const worldObjects=this.children.list.filter(object=>object.depth<5000);
+    this.cameras.main.ignore(uiObjects);
+    this.uiCamera=this.cameras.add(0,0,1280,720,false,'UI');
+    this.uiCamera.ignore(worldObjects);
+    if(this.renderer.type===Phaser.WEBGL){
+      if(!this.renderer.pipelines.postPipelineClasses.has('Campbreeze'))this.renderer.pipelines.addPostPipeline('Campbreeze',CampbreezePipeline);
+      this.cameras.main.setPostPipeline('Campbreeze');
+      this.paintPipeline=this.cameras.main.getPostPipeline('Campbreeze');
+    }
+    this.debugPanel=new DebugPanel(this);
+    this.debugPanel.update();
+    this.updateCollisionDebug();
+  }
+
+  setMapZoom(value) {
+    this.cameras.main.setZoom(Phaser.Math.Clamp(value,.45,1.6));
+    this.debugPanel?.update();
   }
 
   createFish() {
     const goal = this.level.goal;
     const fishCenter = { x: goal.x, y: goal.y };
-    this.fishGlow = this.add.circle(fishCenter.x, fishCenter.y, 26, 0xffd568, 0.35);
+    this.fishGlow = this.add.circle(fishCenter.x, fishCenter.y, 40, 0xffd568, 0.35);
     this.fishGlow.setDepth(12);
-    this.fishBody = this.add.ellipse(fishCenter.x - 6, fishCenter.y, 24, 14, 0xf8d14f);
+    this.fishBody = this.add.ellipse(fishCenter.x - 6, fishCenter.y, 40, 23, 0xf8d14f);
     this.fishBody.setDepth(14);
     this.fishTail = this.add.triangle(fishCenter.x + 8, fishCenter.y, -8, -8, 10, 0, -8, 8, 0xf3b32d);
     this.fishTail.setDepth(14);
+    this.fishTail.setScale(1.5);
     this.fishGoal = { x: fishCenter.x, y: fishCenter.y, radius: 22 };
   }
 
-  createGarden() {
-    const ground = this.add.rectangle(640, 360, 1280, 720, 0x8fc76b);
-    ground.setDepth(0);
-
-    this.add.rectangle(310, 540, 540, 120, 0x7aa15d).setDepth(1);
-    this.add.rectangle(980, 550, 210, 110, 0x7aa15d).setDepth(1);
-    this.add.rectangle(640, 540, 260, 80, 0xc2b795).setDepth(2);
-
-    const pond = this.add.graphics();
-    pond.fillStyle(0x5ea7d9, 1);
-    const water = this.level.waterZones[0];
-    pond.fillRoundedRect(
-      water.x - water.width / 2,
-      water.y - water.height / 2,
-      water.width,
-      water.height,
-      26,
-    );
-    pond.setDepth(2);
-
-    for (const tree of this.level.treePositions) {
-      this.add.circle(tree.x, tree.y, tree.radius, 0x4f9d4a).setDepth(4);
-      this.add.circle(tree.x, tree.y + tree.radius * 0.9, tree.radius * 0.42, 0x815731).setDepth(5);
-    }
-
-    for (const bench of this.level.benchObjects) {
-      this.add.rectangle(bench.x, bench.y, bench.width, bench.height, 0x7a5232).setDepth(5);
-      for (const support of bench.supports) {
-        this.add.rectangle(support.x, support.y, support.width, support.height, 0x7a5232).setDepth(5);
-      }
-    }
-
-    for (const building of this.level.buildingObjects) {
-      this.add.rectangle(
-        building.x,
-        building.y,
-        building.width,
-        building.height,
-        0x7d7268,
-      ).setDepth(9);
-      this.add.rectangle(
-        building.x,
-        building.y - building.height / 2 - building.roofHeight / 2 + 2,
-        building.roofWidth,
-        building.roofHeight,
-        0xa5b7c1,
-      ).setDepth(10);
-    }
-
-    const hut = this.level.pondHut;
-    this.add.rectangle(hut.x, hut.y, hut.width, hut.height, 0x8b6238).setDepth(8);
-    const hutBodyTop = hut.y - hut.height / 2;
-    this.add.rectangle(
-      hut.x,
-      hutBodyTop + hut.roofHeight / 4,
-      hut.roofWidth,
-      hut.roofHeight,
-      0x5c4633,
-    ).setDepth(9);
-
-    for (const platform of this.level.platforms) {
-      this.add.ellipse(platform.x, platform.y, platform.width, platform.height, 0x69af5e).setDepth(6);
-      this.add.ellipse(platform.x, platform.y, platform.width * 0.78, platform.height * 0.58, 0x8bcf69).setDepth(7);
-    }
-
-  }
 
   resetLevel() {
     this.state = 'PLAYING';
     this.player.setPosition(this.level.start.x, this.level.start.y);
     this.player.sprite.setVisible(true);
     this.exposureSystem.reset();
-    this.sunSystem.sunPhase = 0.2;
-    this.sunSystem.targetPhase = 0.2;
+    this.sunSystem.sunPhase = -5/6;
+    this.sunSystem.targetPhase = -5/6;
     this.sunSystem.updateSunPosition();
+    this.art.update(this.sunSystem);
     this.shadowSystem.update(this.sunSystem.sunPhase);
     this.isInShadow = this.shadowSystem.isPointInAnyShadow(this.player.getPosition());
 
@@ -218,6 +197,7 @@ export class GameScene extends Phaser.Scene {
     const deltaSeconds = delta / 1000;
 
     if (this.state !== 'PLAYING') {
+      this.player.stop();
       this.shadowSystem.update(this.sunSystem.sunPhase);
       return;
     }
@@ -237,6 +217,7 @@ export class GameScene extends Phaser.Scene {
     }, deltaSeconds);
 
     this.sunSystem.update(deltaSeconds);
+    this.art.update(this.sunSystem);
     this.shadowSystem.update(this.sunSystem.sunPhase);
 
     this.isInShadow = this.shadowSystem.isPointInAnyShadow(this.player.getPosition());
@@ -250,6 +231,7 @@ export class GameScene extends Phaser.Scene {
     if (exposure.deathTriggered) {
       this.state = 'DEAD';
       this.player.sprite.setVisible(false);
+      this.player.contactShadow.setVisible(false);
       this.safeText.setText('SCALDING!');
       this.safeText.setColor('#ffb3b3');
       this.overlayText.setText('YOU WERE SCALDED!');
@@ -351,51 +333,20 @@ export class GameScene extends Phaser.Scene {
   }
 
   updateCollisionDebug() {
-    if (!this.collisionDebug) {
-      this.collisionDebugGraphics.clear();
-      return;
+    const g=this.collisionDebugGraphics;
+    g.clear();
+    if(!this.collisionDebug)return;
+    g.lineStyle(2,0xffea82,.95);
+    g.strokeCircle(this.player.sprite.x,this.player.sprite.y,this.player.radius);
+    g.strokeCircle(this.fishGoal.x,this.fishGoal.y,this.fishGoal.radius);
+    for(const o of this.level.solidObstacles){
+      g.lineStyle(2,0xff7474,.95);
+      if(o.radius)g.strokeCircle(o.x,o.y,o.radius);
+      else g.strokeRect(o.x-o.width/2,o.y-o.height/2,o.width,o.height);
     }
-
-    this.collisionDebugGraphics.clear();
-    this.collisionDebugGraphics.lineStyle(2, 0xfff06a, 0.9);
-    this.collisionDebugGraphics.strokeCircle(this.player.sprite.x, this.player.sprite.y, this.player.radius);
-
-    for (const obstacle of this.level.solidObstacles) {
-      this.collisionDebugGraphics.lineStyle(2, 0xff6b6b, 0.8);
-      if (obstacle.radius) {
-        this.collisionDebugGraphics.strokeCircle(obstacle.x, obstacle.y, obstacle.radius + this.player.radius);
-      } else {
-        this.collisionDebugGraphics.strokeRect(
-          obstacle.x - obstacle.width / 2 - this.player.radius,
-          obstacle.y - obstacle.height / 2 - this.player.radius,
-          obstacle.width + this.player.radius * 2,
-          obstacle.height + this.player.radius * 2,
-        );
-      }
+    for(const w of this.level.waterZones){
+      g.lineStyle(2,0x64ddff,.95);g.strokeRect(w.x-w.width/2,w.y-w.height/2,w.width,w.height);
     }
-
-    for (const water of this.level.waterZones) {
-      this.collisionDebugGraphics.lineStyle(2, 0x4dd8ff, 0.8);
-      if (water.width && water.height) {
-        this.collisionDebugGraphics.strokeRect(
-          water.x - water.width / 2 - this.player.radius,
-          water.y - water.height / 2 - this.player.radius,
-          water.width + this.player.radius * 2,
-          water.height + this.player.radius * 2,
-        );
-      } else {
-        this.collisionDebugGraphics.strokeCircle(water.x, water.y, water.radius + this.player.radius);
-      }
-    }
-
-    for (const platform of this.level.platforms) {
-      this.collisionDebugGraphics.lineStyle(2, 0x78ff9b, 0.8);
-      this.collisionDebugGraphics.strokeRect(
-        platform.x - platform.width / 2,
-        platform.y - platform.height / 2,
-        platform.width,
-        platform.height,
-      );
-    }
+    g.lineStyle(2,0xbacb8a,.6);g.strokeRect(40,40,this.level.width-80,this.level.height-80);
   }
 }

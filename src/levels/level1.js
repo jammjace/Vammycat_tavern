@@ -1,105 +1,35 @@
+// Shared ground projection: east streets slope down-right, north streets up-right.
+export const townPoint=(x,y)=>({x:1200+(x-1200)*.86-(y-800)*.36,y:800+(x-1200)*.20+(y-800)*.80});
 const treePositions = [
-  { x: 200, y: 500, radius: 54 },
-  { x: 250, y: 165, radius: 46 },
-  { x: 350, y: 400, radius: 42 },
-  { x: 470, y: 300, radius: 44 },
-  { x: 805, y: 350, radius: 46 },
-  { x: 900, y: 180, radius: 52 },
-  { x: 980, y: 220, radius: 44 },
-  { x: 1070, y: 300, radius: 46 },
-  { x: 1140, y: 420, radius: 42 },
-];
-
-const treeTrunkObstacles = treePositions.map((tree) => ({
-  type: 'TREE',
-  x: tree.x,
-  y: tree.y + tree.radius * 0.9,
-  radius: tree.radius * 0.42,
-  blocksMovement: true,
-}));
-
-const benchObjects = [
-  {
-    x: 520,
-    y: 300,
-    width: 180,
-    height: 22,
-    supports: [
-      { x: 465, y: 325, width: 18, height: 36 },
-      { x: 575, y: 325, width: 18, height: 36 },
-    ],
-    shadow: { x: 520, y: 316, width: 180, height: 54 },
-  },
-  {
-    x: 900,
-    y: 430,
-    width: 180,
-    height: 18,
-    supports: [
-      { x: 845, y: 452, width: 18, height: 34 },
-      { x: 955, y: 452, width: 18, height: 34 },
-    ],
-    shadow: { x: 900, y: 445, width: 180, height: 48 },
-  },
-];
-
-const benchShadowCasters = benchObjects.map((bench) => ({
-  ...bench.shadow,
-  visible: false,
-}));
-
-const buildingObjects = [
-  { x: 1025, y: 520, width: 190, height: 60, roofWidth: 220, roofHeight: 18 },
-];
-
-const pondHut = {
-  x: 640,
-  y: 420,
-  width: 72,
-  height: 44,
-  roofWidth: 96,
-  roofHeight: 20,
-};
-
-export const level1 = {
-  name: 'Boston Public Garden',
-  width: 1280,
-  height: 720,
-  start: { x: 120, y: 600 },
-  goal: { type: 'fish', x: 1110, y: 360 },
-  treePositions,
-  benchObjects,
-  buildingObjects,
-  pondHut,
-  shadowCasters: [
-    { x: 200, y: 545, width: 36, height: 60 },
-    { x: 250, y: 215, width: 36, height: 54 },
-    { x: 350, y: 445, width: 34, height: 58 },
-    { x: 470, y: 345, width: 34, height: 58 },
-    { x: 805, y: 395, width: 36, height: 60 },
-    { x: 900, y: 225, width: 38, height: 58 },
-    { x: 980, y: 265, width: 34, height: 58 },
-    { x: 1070, y: 345, width: 36, height: 60 },
-    { x: 1140, y: 465, width: 34, height: 58 },
-    ...benchShadowCasters,
-    pondHut,
+  [440,920,290,340], [720,920,290,340], [1000,920,290,340],
+  [1450,920,290,340], [1730,920,290,340], [2010,920,290,340],
+  [330,1320,300,350], [490,1380,260,310], [630,1280,290,340],
+  [1770,1330,280,330], [1950,1370,300,350], [2160,1300,270,320],
+  [1120,380,250,290], [1370,380,250,290],
+].map(([x,y,width,height])=>({...townPoint(x,y),width,height}));
+const buildingObjects=[
+  {x:380,y:570,width:440,height:360,name:'BAKERY'},
+  {x:850,y:570,width:440,height:360,name:'COTTAGE'},
+  {x:1650,y:570,width:440,height:360,name:'TAVERN'},
+  {x:2120,y:570,width:440,height:360,name:'WORKSHOP'},
+].map(b=>({...b,...townPoint(b.x,b.y)}));
+const benchObjects=[{x:1080,y:1130,width:200,height:80},{x:1450,y:1130,width:200,height:80}].map(b=>({...b,...townPoint(b.x,b.y)}));
+export const level1={
+  name:'Willowcross',width:2400,height:1600,
+  start:{x:treePositions[0].x+45,y:treePositions[0].y+5},goal:townPoint(2110,660),
+  entrances:[380,850,1650,2120].map(x=>({x,y:635,width:80,height:160})),
+  roads:[{x:1200,y:720,width:2280,height:170},{x:1240,y:960,width:160,height:1160}],
+  square:{x:1240,y:1040,width:470,height:350},
+  treePositions,buildingObjects,benchObjects,
+  shadowCasters:[
+    ...treePositions.map(t=>({...t,texture:'tree-art',anchorY:.9})),
+    ...buildingObjects.map(b=>({...b,texture:'house-art',anchorY:.92})),
+    ...benchObjects.map(b=>({...b,texture:'bench-art',anchorY:.94})),
   ],
-  solidObstacles: [
-    ...treeTrunkObstacles,
-    ...benchObjects.flatMap((bench) => [
-      { type: 'BENCH', x: bench.x, y: bench.y, width: bench.width, height: bench.height, blocksMovement: true },
-      ...bench.supports.map((support) => ({ type: 'BENCH', ...support, blocksMovement: true })),
-    ]),
-    ...buildingObjects.map((building) => ({ type: 'BUILDING', ...building, blocksMovement: true })),
-    { type: 'BUILDING', ...pondHut, blocksMovement: true },
+  solidObstacles:[
+    ...treePositions.map(t=>({type:'TREE',x:t.x,y:t.y-5,radius:14,blocksMovement:true})),
+    ...buildingObjects.map(b=>({type:'BUILDING',x:b.x,y:b.y-50,width:285,height:125,blocksMovement:true})),
+    ...benchObjects.map(b=>({type:'BENCH',x:b.x,y:b.y-15,width:175,height:40,blocksMovement:true})),
   ],
-  waterZones: [
-    { x: 640, y: 495, width: 260, height: 210, blocksMovement: true },
-  ],
-  platforms: [
-    { x: 545, y: 505, width: 110, height: 54, isWalkablePlatform: true },
-    { x: 620, y: 520, width: 110, height: 54, isWalkablePlatform: true },
-    { x: 700, y: 520, width: 110, height: 54, isWalkablePlatform: true },
-    { x: 755, y: 520, width: 90, height: 54, isWalkablePlatform: true },
-  ],
+  waterZones:[{...townPoint(1240,1040),width:200,height:105}],platforms:[],
 };

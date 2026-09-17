@@ -1,55 +1,35 @@
 export class ShadowCaster {
-  constructor({ scene, x, y, width, height, strength = 0.7, castsShadow = true }) {
-    this.scene = scene;
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-    this.strength = strength;
-    this.castsShadow = castsShadow;
-    this.sunPhase = 0;
-
-    this.sprite = scene.add.rectangle(x, y, width, height, 0x6f9d52, 1);
-    this.sprite.setOrigin(0.5, 0.5);
-    this.sprite.setDepth(5);
+  constructor({scene,x,y,width,height,texture,anchorY=1}){
+    Object.assign(this,{scene,x,y,width,height,texture,anchorY});
+    this.source=scene.textures.get(texture).getSourceImage();
+    const canvas=document.createElement('canvas');canvas.width=this.source.width;canvas.height=this.source.height;
+    const c=canvas.getContext('2d',{willReadFrequently:true});c.drawImage(this.source,0,0);
+    this.alpha=c.getImageData(0,0,canvas.width,canvas.height).data;
+    this.setShadowDirection(-5/6);
   }
-
-  setShadowDirection(sunPhase) {
-    this.sunPhase = sunPhase;
+  setShadowDirection(phase){
+    // Height / tan(solar elevation), bounded near sunrise/sunset.
+    const elevation=Math.max(.17,Math.sin((phase+1)*Math.PI/2)*1.22);
+    const length=Math.min(this.height*1.9,this.height*.7/Math.tan(elevation));
+    this.dx=phase*length;this.dy=35+length*.32;
   }
-
-  getShadowPolygon() {
-    if (!this.castsShadow) {
-      return [];
-    }
-
-    const minLength = 45;
-    const maxLength = 560;
-    const length = minLength + (maxLength - minLength) * Math.pow(Math.abs(this.sunPhase), 1.5);
-
-    // The shadow is approximated as a projected rectangle. We use one consistent direction vector here,
-    // and the renderer and safety logic both consume this exact polygon. This keeps the rendered shadow and
-    // the gameplay test in sync instead of recalculating a second, slightly different version elsewhere.
-    const sunAngle = Math.PI * (0.35 + 0.35 * (this.sunPhase + 1));
-    const dirX = Math.cos(sunAngle);
-    const dirY = Math.sin(sunAngle);
-
-    const shadowWidth = this.width + 28;
-    const left = this.x - shadowWidth / 2;
-    const right = this.x + shadowWidth / 2;
-    const top = this.y - this.height / 2;
-    const bottom = this.y + this.height / 2;
-
-    const offsetX = dirX * length;
-    const offsetY = dirY * length;
-
-    return [
-      { x: left, y: top },
-      { x: right, y: top },
-      { x: right + offsetX, y: top + offsetY },
-      { x: right + offsetX, y: bottom + offsetY },
-      { x: left + offsetX, y: bottom + offsetY },
-      { x: left + offsetX, y: top + offsetY },
-    ];
+  draw(c){
+    const {width:w,height:h}=this.source;
+    c.save();c.setTransform(this.width/w,0,-this.dx/h,-this.dy/h,this.x-this.width/2+this.anchorY*this.dx,this.y+this.anchorY*this.dy);
+    c.drawImage(this.source,0,0);c.restore();
+    // Canopy contact shade joins the projected silhouette at the trunk, including roots.
+    c.fillStyle='#27351c';c.beginPath();
+    c.ellipse(this.x,this.y,this.width*.22,this.height*.075,0,0,Math.PI*2);c.fill();
   }
+  contains(point){
+    if(((point.x-this.x)/(this.width*.22))**2+((point.y-this.y)/(this.height*.075))**2<=1)return true;
+    const v=this.anchorY-(point.y-this.y)/this.dy;
+    const u=(point.x-this.x+this.width/2-(this.anchorY-v)*this.dx)/this.width;
+    if(u<0||u>=1||v<0||v>=1)return false;
+    return this.alpha[(Math.floor(v*this.source.height)*this.source.width+Math.floor(u*this.source.width))*4+3]>100;
+  }
+  getShadowPolygon(){return[
+    {x:this.x-this.width/2+(this.anchorY-1)*this.dx,y:this.y+(this.anchorY-1)*this.dy},{x:this.x+this.width/2+(this.anchorY-1)*this.dx,y:this.y+(this.anchorY-1)*this.dy},
+    {x:this.x+this.width/2+this.anchorY*this.dx,y:this.y+this.anchorY*this.dy},{x:this.x-this.width/2+this.anchorY*this.dx,y:this.y+this.anchorY*this.dy},
+  ];}
 }

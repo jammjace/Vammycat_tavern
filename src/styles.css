@@ -23,11 +23,20 @@ body {
 }
 
 #app {
+  position: relative;
   width: 1280px;
   height: 720px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
+
+.debug-panel { position: absolute; right: 16px; top: 16px; z-index: 10; width: 235px; padding: 12px 14px; background: #203429ee; color: #e8e3c6; border: 1px solid #81916b; border-radius: 8px; font: 13px/1.6 system-ui; }
+.debug-panel summary { cursor: pointer; font-weight: 600; }
+.debug-panel label, .debug-panel small, .debug-panel output { display: block; margin-top: 9px; }
+.debug-panel input[type=range] { width: 170px; vertical-align: middle; }
+.debug-panel input { accent-color: #b8c980; }
+.zoom-buttons { display: flex; gap: 8px; margin-top: 10px; }
+.zoom-buttons button { flex: 1; color: #eee6c9; border: 1px solid #81916b; background: #41553b; border-radius: 4px; cursor: pointer; padding: 4px; }
 
 canvas {
   display: block;

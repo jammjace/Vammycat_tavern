@@ -5,7 +5,7 @@ export class ExposureSystem {
     this.scene = scene;
     this.maxExposure = 1.0;
     this.currentExposure = 0;
-    this.burnRate = 1.0;
+    this.burnRate = 0.22;
     this.recoveryRate = 0.5;
     this.deathTriggered = false;
   }
@@ -39,7 +39,6 @@ export class ExposureSystem {
       deathTriggered: this.deathTriggered,
     };
 
-    console.debug('[Exposure]', result);
     return result;
   }
 
