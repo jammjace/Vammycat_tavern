@@ -13,7 +13,7 @@ export class DebugPanel {
     document.querySelector('#app').append(panel);this.element=panel;
     panel.querySelector('[data-option="hitboxes"]').onchange=e=>{scene.collisionDebug=e.target.checked;scene.updateCollisionDebug();};
     panel.querySelector('[data-option="shadows"]').onchange=e=>scene.shadowSystem.setDebug(e.target.checked);
-    panel.querySelector('[data-option="paint"]').onchange=e=>{if(scene.paintPipeline)scene.paintPipeline.paintEnabled=e.target.checked;};
+    panel.querySelector('[data-option="paint"]').onchange=e=>{for(const pipeline of [scene.paintPipeline,scene.uiPaintPipeline])if(pipeline)pipeline.paintEnabled=e.target.checked;};
     this.slider=panel.querySelector('input[type="range"]');this.slider.oninput=e=>scene.setMapZoom(Number(e.target.value));
     for(const button of panel.querySelectorAll('button'))button.onclick=()=>scene.setMapZoom(Number(button.dataset.zoom)===0?1:scene.cameras.main.zoom+Number(button.dataset.zoom));
     scene.events.once('shutdown',()=>panel.remove());

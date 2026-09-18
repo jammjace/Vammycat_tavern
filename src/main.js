@@ -21,5 +21,7 @@ const config = {
   },
 };
 
-const game = new Phaser.Game(config);
-if (import.meta.env.DEV) window.game = game;
+document.fonts.load('20px "Real Chalk"').then(() => {
+  const game = new Phaser.Game(config);
+  if (import.meta.env.DEV) window.game = game;
+});

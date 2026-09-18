@@ -61,7 +61,7 @@ void main(){
 export class CampbreezePipeline extends Phaser.Renderer.WebGL.Pipelines.PostFXPipeline {
   constructor(game){super({game,renderTarget:true,fragShader});this.paintEnabled=true;}
   onPreRender(){
-    const camera=this.game.scene.getScene('GameScene').cameras.main;
+    const camera=this.sourceCamera || this.game.scene.getScene('GameScene').cameras.main;
     this.set2f('resolution',this.renderer.width,this.renderer.height);
     this.set2f('cameraOrigin',camera.worldView.x,camera.worldView.y);
     this.set1f('zoom',camera.zoom);this.set1f('enabled',this.paintEnabled?1:0);

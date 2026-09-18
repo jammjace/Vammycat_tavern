@@ -1,12 +1,16 @@
 import Phaser from 'phaser';
+import { FishReward } from '../systems/FishReward.js';
 import { Player } from '../entities/Player.js';
 import { ShadowCaster } from '../entities/ShadowCaster.js';
 import { ShadowSystem } from '../systems/ShadowSystem.js';
 import { SunSystem } from '../systems/SunSystem.js';
 import { ExposureSystem } from '../systems/ExposureSystem.js';
+import { WindSystem } from '../systems/WindSystem.js';
+import { townPoint, groundPoint } from '../levels/level1.js';
 import { level1 } from '../levels/level1.js';
 import { GardenArt } from '../art/GardenArt.js';
 import { CampbreezePipeline } from '../art/CampbreezePipeline.js';
+import { BurnThermometer } from '../systems/BurnThermometer.js';
 import { DebugPanel } from '../systems/DebugPanel.js';
 
 export class GameScene extends Phaser.Scene {
@@ -15,6 +19,8 @@ export class GameScene extends Phaser.Scene {
   }
 
   preload() {
+    for (let i=1;i<=4;i++) this.load.image(`tree-${i}`, `${import.meta.env.BASE_URL}assets/scenery/tree-${i}.png`);
+    for (let i=1;i<=4;i++) this.load.image(`tree-${i}-layers`, `${import.meta.env.BASE_URL}assets/scenery/tree-${i}-layers.png`);
     this.load.image('tree-art', `${import.meta.env.BASE_URL}assets/scenery/tree.png`);
     this.load.image('house-art', `${import.meta.env.BASE_URL}assets/scenery/house.png`);
     for (let i = 1; i <= 4; i++) this.load.image(`cat-${i}`, `${import.meta.env.BASE_URL}assets/cat/run-0${i}.png`);
@@ -35,6 +41,7 @@ export class GameScene extends Phaser.Scene {
     this.player = new Player(this, this.level.start.x, this.level.start.y);
     this.sunSystem = new SunSystem(this);
     this.exposureSystem = new ExposureSystem(this);
+    this.exposureSystem.burnRate = this.level.burnRate;
     this.shadowCasters = this.level.shadowCasters.map((data) => {
       const caster = new ShadowCaster({
         ...data,
@@ -59,7 +66,7 @@ export class GameScene extends Phaser.Scene {
     this.isInShadow = this.shadowSystem.isPointInAnyShadow(this.player.getPosition());
 
     this.safeText = this.add.text(20, 60, 'SAFE — IN SHADOW', {
-      fontFamily: 'sans-serif',
+      fontFamily: 'Real Chalk', letterSpacing: 1.5,
       fontSize: '22px',
       color: '#dfffd7',
       backgroundColor: 'rgba(0,0,0,0.25)',
@@ -67,8 +74,8 @@ export class GameScene extends Phaser.Scene {
     });
     this.safeText.setDepth(100);
 
-    this.objectiveText = this.add.text(24, 110, 'OBJECTIVE\nRetrieve your fish', {
-      fontFamily: 'sans-serif',
+    this.objectiveText = this.add.text(24, 110, 'RETRIEVE YOUR FISH\nScroll time to connect the shadows\nRest at roots & shaded benches', {
+      fontFamily: 'Real Chalk', letterSpacing: 1.5,
       fontSize: '20px',
       color: '#f4f1d9',
       align: 'left',
@@ -77,12 +84,12 @@ export class GameScene extends Phaser.Scene {
     });
     this.objectiveText.setDepth(100);
 
-    this.exposureBarBg = this.add.rectangle(120, 34, 180, 10, 0x243528).setDepth(110);
-    this.exposureBar = this.add.rectangle(30, 34, 0, 10, 0xff6b6b).setDepth(111);
-    this.exposureBar.setOrigin(0, 0.5);
+    this.thermometer = new BurnThermometer(this);
 
-    this.overlayText = this.add.text(640, 310, '', {
-      fontFamily: 'serif',
+    this.deathOverlay = this.add.rectangle(640, 360, 1280, 720, 0x9e2428, .5)
+      .setScrollFactor(0).setDepth(6100).setVisible(false);
+    this.overlayText = this.add.text(640, 320, '', {
+      fontFamily: 'Real Chalk', letterSpacing: 1.5,
       fontSize: '42px',
       color: '#fce6a6',
       stroke: '#000000',
@@ -90,11 +97,11 @@ export class GameScene extends Phaser.Scene {
       align: 'center',
     });
     this.overlayText.setOrigin(0.5);
-    this.overlayText.setDepth(120);
+    this.overlayText.setScrollFactor(0).setDepth(6101);
     this.overlayText.setVisible(false);
 
-    this.overlaySubText = this.add.text(640, 365, '', {
-      fontFamily: 'sans-serif',
+    this.overlaySubText = this.add.text(640, 475, '', {
+      fontFamily: 'Real Chalk', letterSpacing: 1.5,
       fontSize: '20px',
       color: '#f3f0d8',
       stroke: '#000000',
@@ -102,12 +109,14 @@ export class GameScene extends Phaser.Scene {
       align: 'center',
     });
     this.overlaySubText.setOrigin(0.5);
-    this.overlaySubText.setDepth(120);
+    this.overlaySubText.setScrollFactor(0).setDepth(6101);
     this.overlaySubText.setVisible(false);
 
     this.createFish();
+    this.windSystem = new WindSystem(this);
+    this.reward = new FishReward(this);
     this.add.text(24, 688, 'WASD / ARROWS  Move     SCROLL  Time     SHIFT + SCROLL  Zoom     R  Restart     F2  Debug', {
-      fontFamily: 'sans-serif', fontSize: '13px', color: '#e3e7c4', backgroundColor: '#253c2ddd', padding: { x: 10, y: 5 },
+      fontFamily: 'Real Chalk', letterSpacing: 1.5, fontSize: '13px', color: '#e3e7c4', backgroundColor: '#253c2ddd', padding: { x: 10, y: 5 },
     }).setDepth(100);
 
     this.input.on('wheel', (_pointer, _currentlyOver, _deltaX, deltaY, _deltaZ) => {
@@ -138,7 +147,7 @@ export class GameScene extends Phaser.Scene {
     this.art.update(this.sunSystem);
     this.updateSafetyStatus(this.isInShadow);
     this.updateExposureBar();
-    // A separate unzoomed UI camera keeps the clock and status fixed and unfiltered.
+    // A separate unzoomed UI camera keeps the clock and status fixed under the painterly shader.
     const uiObjects=this.children.list.filter(object=>object.depth>=5000);
     const worldObjects=this.children.list.filter(object=>object.depth<5000);
     this.cameras.main.ignore(uiObjects);
@@ -148,6 +157,9 @@ export class GameScene extends Phaser.Scene {
       if(!this.renderer.pipelines.postPipelineClasses.has('Campbreeze'))this.renderer.pipelines.addPostPipeline('Campbreeze',CampbreezePipeline);
       this.cameras.main.setPostPipeline('Campbreeze');
       this.paintPipeline=this.cameras.main.getPostPipeline('Campbreeze');
+      this.uiCamera.setPostPipeline('Campbreeze');
+      this.uiPaintPipeline=this.uiCamera.getPostPipeline('Campbreeze');
+      this.uiPaintPipeline.sourceCamera=this.uiCamera;
     }
     this.debugPanel=new DebugPanel(this);
     this.debugPanel.update();
@@ -160,20 +172,17 @@ export class GameScene extends Phaser.Scene {
   }
 
   createFish() {
-    const goal = this.level.goal;
-    const fishCenter = { x: goal.x, y: goal.y };
-    this.fishGlow = this.add.circle(fishCenter.x, fishCenter.y, 40, 0xffd568, 0.35);
-    this.fishGlow.setDepth(12);
-    this.fishBody = this.add.ellipse(fishCenter.x - 6, fishCenter.y, 40, 23, 0xf8d14f);
-    this.fishBody.setDepth(14);
-    this.fishTail = this.add.triangle(fishCenter.x + 8, fishCenter.y, -8, -8, 10, 0, -8, 8, 0xf3b32d);
-    this.fishTail.setDepth(14);
-    this.fishTail.setScale(1.5);
-    this.fishGoal = { x: fishCenter.x, y: fishCenter.y, radius: 22 };
+    FishReward.makeTexture(this);
+    const goal=this.level.goal;
+    this.fishGlow=this.add.ellipse(goal.x,goal.y+14,64,20,0xffd568,.25).setDepth(12);
+    this.fishBody=this.add.image(goal.x,goal.y-9,'golden-fish').setDisplaySize(72,48).setDepth(goal.y+10);
+    this.fishGoal={...goal,radius:22};
   }
 
 
   resetLevel() {
+    this.reward.hide();
+    this.deathOverlay.setVisible(false);
     this.state = 'PLAYING';
     this.player.setPosition(this.level.start.x, this.level.start.y);
     this.player.sprite.setVisible(true);
@@ -187,18 +196,22 @@ export class GameScene extends Phaser.Scene {
 
     this.fishGlow.setVisible(true);
     this.fishBody.setVisible(true);
-    this.fishTail.setVisible(true);
+
     this.overlayText.setVisible(false);
     this.overlaySubText.setVisible(false);
     this.updateExposureBar();
   }
 
   update(_time, delta) {
-    const deltaSeconds = delta / 1000;
+    const deltaSeconds = Math.min(delta / 1000, .05);
+    this.windSystem.update(_time, deltaSeconds);
+    this.reward.update(deltaSeconds);
+    this.art.update(this.sunSystem);
 
     if (this.state !== 'PLAYING') {
       this.player.stop();
       this.shadowSystem.update(this.sunSystem.sunPhase);
+      this.player.updateVisuals(_time,deltaSeconds);
       return;
     }
 
@@ -221,12 +234,13 @@ export class GameScene extends Phaser.Scene {
     this.shadowSystem.update(this.sunSystem.sunPhase);
 
     this.isInShadow = this.shadowSystem.isPointInAnyShadow(this.player.getPosition());
+    this.player.updateVisuals(_time,deltaSeconds);
     const exposure = this.exposureSystem.update(deltaSeconds, this.isInShadow, this.state);
     this.updateSafetyStatus(this.isInShadow);
     this.updateExposureBar();
     this.updateCollisionDebug();
 
-    this.checkFishPickup();
+    if (!exposure.deathTriggered) this.checkFishPickup();
 
     if (exposure.deathTriggered) {
       this.state = 'DEAD';
@@ -234,7 +248,8 @@ export class GameScene extends Phaser.Scene {
       this.player.contactShadow.setVisible(false);
       this.safeText.setText('SCALDING!');
       this.safeText.setColor('#ffb3b3');
-      this.overlayText.setText('YOU WERE SCALDED!');
+      this.deathOverlay.setVisible(true);
+      this.overlayText.setText('ALAS!\nTHOU HATH PERISHED\nWITH THE SUN.');
       this.overlayText.setVisible(true);
       this.overlaySubText.setText('Press R to play again');
       this.overlaySubText.setVisible(true);
@@ -248,13 +263,10 @@ export class GameScene extends Phaser.Scene {
 
     if (distance <= fish.radius + this.player.radius + 6) {
       this.state = 'WON';
-      this.overlayText.setText('FISH RETRIEVED!');
-      this.overlayText.setVisible(true);
-      this.overlaySubText.setText('You made it through the garden.\nPress R to play again');
-      this.overlaySubText.setVisible(true);
+      this.player.stop();
+      this.reward.show(this.fishBody);
       this.fishGlow.setVisible(false);
       this.fishBody.setVisible(false);
-      this.fishTail.setVisible(false);
     }
   }
 
@@ -265,8 +277,7 @@ export class GameScene extends Phaser.Scene {
 
   updateExposureBar() {
     const ratio = Phaser.Math.Clamp(this.exposureSystem.currentExposure / this.exposureSystem.maxExposure, 0, 1);
-    this.exposureBar.width = 180 * ratio;
-    this.exposureBar.setFillStyle(ratio >= 1 ? 0xff4242 : 0xffb347);
+    this.thermometer.update(ratio);
   }
 
   isPositionBlocked(x, y, radius) {
@@ -305,13 +316,12 @@ export class GameScene extends Phaser.Scene {
       const dx = x - water.x;
       const dy = y - water.y;
       if (water.width && water.height) {
-        const halfW = water.width / 2;
-        const halfH = water.height / 2;
-        const nearestX = Phaser.Math.Clamp(x, water.x - halfW, water.x + halfW);
-        const nearestY = Phaser.Math.Clamp(y, water.y - halfH, water.y + halfH);
-        const edgeX = x - nearestX;
-        const edgeY = y - nearestY;
-        if (edgeX * edgeX + edgeY * edgeY < radius * radius) return true;
+        const p=groundPoint(x,y);
+        const dx=Math.max(Math.abs(p.x-water.groundX)-water.width/2,0);
+        const dy=Math.max(Math.abs(p.y-water.groundY)-water.height/2,0);
+        // Transform the closest point back to screen space for the cat radius.
+        const nearest=townPoint(Phaser.Math.Clamp(p.x,water.groundX-water.width/2,water.groundX+water.width/2),Phaser.Math.Clamp(p.y,water.groundY-water.height/2,water.groundY+water.height/2));
+        if ((!dx&&!dy)||Math.hypot(x-nearest.x,y-nearest.y)<radius) return true;
       } else if (Math.hypot(dx, dy) < water.radius + radius) {
         return true;
       }
@@ -345,7 +355,7 @@ export class GameScene extends Phaser.Scene {
       else g.strokeRect(o.x-o.width/2,o.y-o.height/2,o.width,o.height);
     }
     for(const w of this.level.waterZones){
-      g.lineStyle(2,0x64ddff,.95);g.strokeRect(w.x-w.width/2,w.y-w.height/2,w.width,w.height);
+      g.lineStyle(2,0x64ddff,.95);g.strokePoints([[-1,-1],[1,-1],[1,1],[-1,1]].map(([a,b])=>townPoint(w.groundX+a*w.width/2,w.groundY+b*w.height/2)),true);
     }
     g.lineStyle(2,0xbacb8a,.6);g.strokeRect(40,40,this.level.width-80,this.level.height-80);
   }

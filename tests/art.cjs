@@ -52,6 +52,20 @@ const assert = require('node:assert/strict');
       return { alpha, moving, frames, idle, changed, lightChanged, morningClock, spawnSafe, morningLength, noonLength, eveningLength, morningDirection, eveningDirection, opaqueMatch, transparentMatch };
     });
     assert(result.alpha.every(f=>f.transparent>1000&&f.white>1000),'Alpha background and opaque white fur');
+    const trees=await page.evaluate(()=>{
+      const s=game.scene.scenes[0];
+      s.time.now=1000;s.art.update(s.sunSystem);
+      const props=s.art.props.filter(p=>p.texture.startsWith('tree-'));
+      const before=props.map(p=>p.sprite.rotation);
+      s.shadowSystem.update(s.sunSystem.sunPhase);
+      const woodBefore=s.shadowCasters.filter(c=>c.isTree).map(c=>JSON.stringify(c.layers[0].matrix));
+      s.time.now=1700;s.art.update(s.sunSystem);s.shadowSystem.update(s.sunSystem.sunPhase);
+      return props.map((p,i)=>({key:p.texture,still:p.bark.rotation===0&&p.bark.x===p.x&&p.bark.y===p.y,
+        sways:p.sprite.rotation!==before[i],woodShadowStill:woodBefore[i]===JSON.stringify(s.shadowCasters.filter(c=>c.isTree)[i].layers[0].matrix),
+        transparent:s.textures.get(`${p.texture}-foliage`).context.getImageData(0,0,1,1).data[3]===0}));
+    });
+    assert.equal(trees.length,4);assert(trees.every(t=>t.still&&t.sways&&t.woodShadowStill&&t.transparent),JSON.stringify(trees));
+    console.log('Checked all tree layers',trees);
     console.log('Checked art and shadows');
     assert(result.moving);assert.deepEqual(result.frames,['cat-1','cat-2','cat-3','cat-4']);assert.equal(result.idle,'cat-1');
     assert(result.changed);assert(result.lightChanged);assert.deepEqual(errors,[]);
@@ -76,6 +90,24 @@ const assert = require('node:assert/strict');
     });
     assert(town.panel&&town.debug);assert.equal(town.trunk,'TREE');assert.equal(town.roots,null);
     assert(town.rootShade&&town.houseShadows);assert(town.houses>=4&&town.shader);assert.equal(town.uiZoom,1);
+    const effects=await page.evaluate(()=>{
+      const s=game.scene.scenes[0],p=s.player,w=s.level.waterZones[0];
+      const variants=new Set(s.art.props.filter(p=>p.texture.startsWith('tree-')).map(p=>p.texture)).size;
+      const poolCenter=s.isInsideWater(w.x,w.y,0);
+      const poolOutside=s.isInsideWater(w.x+120,w.y+55,0);
+      p.moving=true;p.moveX=1;p.updateVisuals(1000,.06);p.updateVisuals(1100,.06);
+      const count=p.sparkles.length,outlined=Boolean(p.outline),shadowGap=p.contactShadow.y-p.sprite.y;
+      p.stop();p.updateVisuals(3000,2);p.updateVisuals(3100,.1);
+      s.shadowSystem.update(s.sunSystem.sunPhase);const dx=s.shadowCasters[0].foliageAngle;
+      s.time.now+=600;s.shadowSystem.update(s.sunSystem.sunPhase);
+      const shadowSways=dx!==s.shadowCasters[0].foliageAngle;
+      s.resetLevel();
+      return {variants,poolCenter,poolOutside,count,outlined,shadowGap,expired:p.sparkles.length===0,shadowSways,windAbove:s.windSystem.graphics.depth>3001};
+    });
+    assert.equal(effects.variants,4);assert(effects.poolCenter&&!effects.poolOutside);
+    assert(effects.count>0&&!effects.outlined&&effects.shadowGap>=29&&effects.expired);
+    assert(effects.shadowSways&&effects.windAbove);
+    console.log('Checked isometric pool, tree variants, wind, floating cat and sparkle lifetime',effects);
     console.log('Checked town collisions');
     await page.evaluate(()=>game.scene.scenes[0].scene.resume());
     await page.locator('canvas').evaluate(el=>el.dispatchEvent(new WheelEvent('wheel',{deltaY:-250,shiftKey:true,bubbles:true,clientX:660,clientY:400})));

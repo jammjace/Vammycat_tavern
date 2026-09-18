@@ -8,7 +8,8 @@ export class ShadowSystem {
   registerCaster(caster){this.shadowCasters.push(caster);}
   setDebug(enabled){this.debug=enabled;this.lastPhase=undefined;}
   update(phase){
-    if(this.lastPhase!==undefined&&Math.abs(phase-this.lastPhase)<.001)return;
+    if(this.lastPhase!==undefined&&Math.abs(phase-this.lastPhase)<.001&&this.scene.time.now-(this.lastDraw||0)<50)return;
+    this.lastDraw=this.scene.time.now;
     this.lastPhase=phase;const c=this.texture.context;
     c.clearRect(0,0,this.texture.width,this.texture.height);c.globalCompositeOperation='source-over';this.graphics.clear();
     this.shadowPolygons=this.shadowCasters.map(caster=>{
