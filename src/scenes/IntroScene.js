@@ -1,3 +1,4 @@
+import { loadClick, playClick } from '../systems/GameAudio.js';
 import { addChalkText, loadChalkText } from '../art/ChalkText.js';
 import { trackLoading } from '../loading.js';
 import { record, trackPreload, trackFirstFrame } from '../startupTiming.js';
@@ -8,6 +9,7 @@ export class IntroScene extends Phaser.Scene {
 
   preload() {
     trackPreload(this);
+    loadClick(this);
     trackLoading(this);
     loadChalkText(this, 'intro');
     if (!this.textures.exists('cat-1')) this.load.image('cat-1', `${import.meta.env.BASE_URL}assets/cat/run-01.png`);
@@ -25,7 +27,7 @@ export class IntroScene extends Phaser.Scene {
     ink.lineStyle(2, 0xb7b875, .65).strokeRoundedRect(120, 36, 1040, 644, 28);
     ink.lineStyle(1, 0xb7b875, .3).strokeRoundedRect(130, 46, 1020, 624, 24);
     const text = (y, value, size, color = '#f4e9bf') => addChalkText(this, 640, y, value, {
-      fontFamily: 'Real Chalk', fontSize: `${size}px`, color,
+      fontFamily: 'Eraser Dust', fontSize: `${size}px`, color,
       align: 'center', letterSpacing: 1.5, lineSpacing: 10,
     }).setOrigin(.5);
     text(102, 'VAMMYCAT', 68);
@@ -34,7 +36,7 @@ export class IntroScene extends Phaser.Scene {
     text(269, 'A vampire cat. A hungry little quest for a fish.', 24);
     text(329, 'Sunlight burns. Shadows keep you safe.', 28);
     text(386, 'Change the time of day to move the shadows\nand find a safe path to the fish.', 23);
-    text(475, 'WASD / ARROWS  Move     MOUSE WHEEL / U, H  Change time\nR  Restart the current level', 19);
+    text(475, 'WASD / ARROWS  Move     MOUSE WHEEL / U, H  Change time\nUse Restart to try the current level again', 19);
     const button = this.add.rectangle(640, 572, 240, 60, 0x617344)
       .setStrokeStyle(2, 0xe5d79b).setInteractive({ useHandCursor: true });
     text(572, 'BEGIN', 32);
@@ -42,6 +44,7 @@ export class IntroScene extends Phaser.Scene {
     const begin = () => {
       if (this.starting) return;
       this.starting = true;
+      playClick(this);
       this.scene.start('GameScene', { levelIndex: 0 });
     };
     record(`${this.startupTag}:create`, createStart);

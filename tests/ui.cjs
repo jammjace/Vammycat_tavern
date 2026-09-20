@@ -19,7 +19,7 @@ const assert = require('node:assert/strict');
       // Test the static fill position independently of the burning jitter.
       e.reset();e.currentExposure=.65;s.isInShadow=true;s.updateExposureBar();
       document.querySelector('details').open=false;
-      return {fine,coarse,first,second,dies,cooled,frozen,font:document.fonts.check('20px "Real Chalk"'),shader:s.uiPaintPipeline.paintEnabled,oldBar:!!s.exposureBar,clock:s.sunSystem.uiText.text,head:s.thermometer.flame.x};
+      return {fine,coarse,first,second,dies,cooled,frozen,font:document.fonts.check('20px "Eraser Dust"'),shader:s.uiPaintPipeline.paintEnabled,oldBar:!!s.exposureBar,clock:s.sunSystem.uiText.text,head:s.thermometer.flame.x};
     });
     assert(Math.abs(result.fine-result.coarse)<1e-10);
     assert(result.first>result.second*1.5);

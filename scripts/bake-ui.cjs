@@ -66,7 +66,7 @@ const { createHash } = require('node:crypto');
         game.scene.getScene('GameScene').scene.restart({ levelIndex: index }); game.loop.start(game.loop.callback);
       }, i + 1);
     }
-    const fontHash = createHash('sha256').update(readFileSync('public/assets/fonts/real-chalk.otf')).digest('hex');
+    const fontHash = createHash('sha256').update(readFileSync('public/assets/fonts/eraser-dust.ttf')).digest('hex');
     writeFileSync('src/art/ui-text-cache.json', JSON.stringify({ fontHash, metrics, entries: Object.values(entries) }, null, 2) + '\n');
     console.log(`Saved ${Object.keys(entries).length} unique lossless labels.`);
   } finally { await browser.close(); }

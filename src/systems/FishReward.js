@@ -31,10 +31,10 @@ export class FishReward {
     this.halo=scene.add.image(640,330,'sun-halo').setDisplaySize(700,700).setAlpha(.7);
     this.shadow=scene.add.ellipse(640,459,215,35,0x071b20,.48);
     this.fish=scene.add.image(640,330,'golden-fish');
-    const text=(y,label,size)=>addChalkText(scene, 640,y,label,{fontFamily:'Real Chalk',fontSize:`${size}px`,color:'#fff1c4',align:'center',letterSpacing:2}).setOrigin(.5);
+    const text=(y,label,size)=>addChalkText(scene, 640,y,label,{fontFamily:'Eraser Dust',fontSize:`${size}px`,color:'#fff1c4',align:'center',letterSpacing:2}).setOrigin(.5);
     this.title=text(140,'FISH RETRIEVED!',44);
     this.caption=text(565,'A little patience. A little sunshine. A well-earned fish.',22);
-    this.restart=text(622,'Press R to return to the garden',20);
+    this.restart=text(622,'The garden awaits another adventure.',20);
     this.root.add([this.backdrop,this.rays,this.halo,this.shadow,this.fish,this.title,this.caption,this.restart]);
   }
   show(worldFish) {

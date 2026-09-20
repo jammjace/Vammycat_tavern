@@ -14,6 +14,7 @@ import { levels } from '../levels/levels.js';
 import { GardenArt } from '../art/GardenArt.js';
 import { CampbreezePipeline } from '../art/CampbreezePipeline.js';
 import { BurnThermometer } from '../systems/BurnThermometer.js';
+import { GameAudio } from '../systems/GameAudio.js';
 import { DebugPanel } from '../systems/DebugPanel.js';
 
 export class GameScene extends Phaser.Scene {
@@ -31,6 +32,7 @@ export class GameScene extends Phaser.Scene {
 
   preload() {
     trackPreload(this);
+    GameAudio.preload(this);
     trackLoading(this);
     loadChalkText(this, `level-${this.levelIndex}`);
     const image = (key, path) => {
@@ -46,6 +48,7 @@ export class GameScene extends Phaser.Scene {
   create() {
     const createStart = performance.now();
     this.state = 'PLAYING';
+    this.audio = new GameAudio(this);
     this.cursors = this.input.keyboard.createCursorKeys();
     this.wasd = this.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -83,7 +86,7 @@ export class GameScene extends Phaser.Scene {
     this.isInShadow = this.shadowSystem.isPointInAnyShadow(this.player.getPosition());
 
     this.safeText = addChalkText(this, 20, 60, 'SAFE — IN SHADOW', {
-      fontFamily: 'Real Chalk', letterSpacing: 1.5,
+      fontFamily: 'Eraser Dust', letterSpacing: 1.5,
       fontSize: '22px',
       color: '#dfffd7',
       backgroundColor: 'rgba(0,0,0,0.25)',
@@ -92,7 +95,7 @@ export class GameScene extends Phaser.Scene {
     this.safeText.setDepth(100);
 
     this.objectiveText = addChalkText(this, 24, 110, this.level.objective ?? 'RETRIEVE YOUR FISH\nScroll time to connect the shadows\nRest at roots & shaded benches', {
-      fontFamily: 'Real Chalk', letterSpacing: 1.5,
+      fontFamily: 'Eraser Dust', letterSpacing: 1.5,
       fontSize: '20px',
       color: '#f4f1d9',
       align: 'left',
@@ -106,7 +109,7 @@ export class GameScene extends Phaser.Scene {
     this.deathOverlay = this.add.rectangle(640, 360, 1280, 720, 0x9e2428, .5)
       .setScrollFactor(0).setDepth(6100).setVisible(false);
     this.overlayText = addChalkText(this, 640, 320, '', {
-      fontFamily: 'Real Chalk', letterSpacing: 1.5,
+      fontFamily: 'Eraser Dust', letterSpacing: 1.5,
       fontSize: '42px',
       color: '#fce6a6',
       stroke: '#000000',
@@ -118,7 +121,7 @@ export class GameScene extends Phaser.Scene {
     this.overlayText.setVisible(false);
 
     this.overlaySubText = addChalkText(this, 640, 475, '', {
-      fontFamily: 'Real Chalk', letterSpacing: 1.5,
+      fontFamily: 'Eraser Dust', letterSpacing: 1.5,
       fontSize: '20px',
       color: '#f3f0d8',
       stroke: '#000000',
@@ -129,11 +132,12 @@ export class GameScene extends Phaser.Scene {
     this.overlaySubText.setScrollFactor(0).setDepth(6101);
     this.overlaySubText.setVisible(false);
 
+    this.createButtons();
     this.createFish();
     this.windSystem = new WindSystem(this);
     this.reward = new FishReward(this);
-    addChalkText(this, 24, 688, 'WASD / ARROWS  Move     SCROLL  Time     SHIFT + SCROLL  Zoom     R  Restart     F2  Debug', {
-      fontFamily: 'Real Chalk', letterSpacing: 1.5, fontSize: '13px', color: '#e3e7c4', backgroundColor: '#253c2ddd', padding: { x: 10, y: 5 },
+    addChalkText(this, 24, 688, 'WASD / ARROWS  Move     SCROLL  Time     SHIFT + SCROLL  Zoom     F2  Debug', {
+      fontFamily: 'Eraser Dust', letterSpacing: 1.5, fontSize: '13px', color: '#e3e7c4', backgroundColor: '#253c2ddd', padding: { x: 10, y: 5 },
     }).setDepth(100);
 
     const onWheel = (_pointer, _currentlyOver, _deltaX, deltaY, _deltaZ) => {
@@ -155,7 +159,6 @@ export class GameScene extends Phaser.Scene {
     const bindings = {
       'keydown-U': earlier, 'keydown-H': later,
       'keydown-F2': () => this.debugPanel?.toggle(),
-      'keydown-R': () => this.resetLevel(),
     };
     for (const [event, handler] of Object.entries(bindings)) this.input.keyboard.on(event, handler);
     this.events.once('shutdown', () => {
@@ -213,7 +216,34 @@ export class GameScene extends Phaser.Scene {
   }
 
 
+  createButtons() {
+    this.controls = document.createElement('div');
+    this.controls.className = 'game-controls';
+    const button = (label, action) => {
+      const element = document.createElement('button');
+      element.textContent = label;
+      element.addEventListener('click', action);
+      this.controls.append(element);
+      return element;
+    };
+    this.restartButton = button('Restart', () => this.resetLevel());
+    this.nextButton = button('Next Level', () => {
+      if (this.state === 'LEVEL_COMPLETE') this.scene.restart({ levelIndex: this.levelIndex + 1 });
+    });
+    this.nextButton.hidden = true;
+    document.getElementById('app').append(this.controls);
+    this.events.once('shutdown', () => this.controls.remove());
+  }
+
+  showResultButtons() {
+    this.controls.classList.add('result');
+    this.nextButton.hidden = this.state !== 'LEVEL_COMPLETE';
+  }
+
   resetLevel() {
+    this.audio.reset();
+    this.controls.classList.remove('result');
+    this.nextButton.hidden = true;
     this.transitionTimer?.remove(false);
     this.transitionTimer = null;
     this.reward.hide();
@@ -281,10 +311,15 @@ export class GameScene extends Phaser.Scene {
     this.updateExposureBar();
     this.updateCollisionDebug();
 
+    // Ignore the imperceptible interpolation tail once the clock has settled.
+    const changingTime = Math.abs(this.sunSystem.targetPhase - this.sunSystem.sunPhase) > .0005;
+    this.audio.update(deltaSeconds, this.player.moving, !this.isInShadow, changingTime);
     if (!exposure.deathTriggered) this.checkFishPickup();
 
     if (exposure.deathTriggered) {
       this.state = 'DEAD';
+      this.audio.finish(false);
+      this.showResultButtons();
       this.player.sprite.setVisible(false);
       this.player.contactShadow.setVisible(false);
       this.safeText.setText('SCALDING!');
@@ -292,7 +327,7 @@ export class GameScene extends Phaser.Scene {
       this.deathOverlay.setVisible(true);
       this.overlayText.setText('ALAS!\nTHOU HATH PERISHED\nWITH THE SUN.');
       this.overlayText.setVisible(true);
-      this.overlaySubText.setText('Press R to play again');
+      this.overlaySubText.setText('Try the shadows again.');
       this.overlaySubText.setVisible(true);
     }
   }
@@ -304,6 +339,7 @@ export class GameScene extends Phaser.Scene {
 
     if (distance <= fish.radius + this.player.radius + 6) {
       this.state = 'WON';
+      this.audio.finish(true);
       this.player.stop();
       if (this.levelIndex === levels.length - 1) {
         this.reward.show(this.fishBody);
@@ -312,11 +348,9 @@ export class GameScene extends Phaser.Scene {
         this.deathOverlay.setFillStyle(0x172a29, .86).setVisible(true);
         this.overlayText.setText('LEVEL COMPLETE\nFISH RETRIEVED!').setVisible(true);
         this.overlaySubText.setText(`Next: ${levels[this.levelIndex + 1].name}`).setVisible(true);
-        // Restart the shared scene to rebuild cameras, effects and world canvases.
-        this.transitionTimer = this.time.delayedCall(1800, () => {
-          this.scene.restart({ levelIndex: this.levelIndex + 1 });
-        });
+
       }
+      this.showResultButtons();
       this.fishGlow.setVisible(false);
       this.fishBody.setVisible(false);
     }

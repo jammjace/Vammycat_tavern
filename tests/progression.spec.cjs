@@ -41,6 +41,7 @@ test('intro, playable tutorial routes, clean transitions and final reward', asyn
   page.on('pageerror', error => errors.push(error.message));
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
   await page.goto('/');
+  await page.getByRole('button', { name: 'Skip intro' }).click();
   await expect.poll(() => page.evaluate(() => window.game?.scene.isActive('IntroScene'))).toBe(true);
   await page.screenshot({ path: testInfo.outputPath('intro.png') });
   await page.locator('canvas').click({ position: { x: 640, y: 572 } });
@@ -77,7 +78,7 @@ test('intro, playable tutorial routes, clean transitions and final reward', asyn
   // Actual keyboard input and restart stay in the current level.
   await page.keyboard.press('H');
   expect((await inspect()).target).toBeCloseTo(-5 / 6 + .05);
-  await page.keyboard.press('r');
+  await page.getByRole('button', { name: 'Restart', exact: true }).click();
   await fresh(0);
 
   const firstRoute = [
@@ -90,18 +91,19 @@ test('intro, playable tutorial routes, clean transitions and final reward', asyn
   expect(first.at(-1).state).toBe('LEVEL_COMPLETE');
   expect(Math.max(...first.map(step => step.peak))).toBeLessThan(.85);
 
-  // R during the success overlay must cancel the pending transition.
+  // Restart during the success overlay stays on this level.
   await page.evaluate(() => game.loop.start(game.loop.callback));
-  await page.keyboard.press('r');
+  await page.getByRole('button', { name: 'Restart', exact: true }).click();
   await fresh(0);
   await page.waitForTimeout(2000);
   expect((await inspect()).index).toBe(0);
   expect((await walk(page, firstRoute)).at(-1).state).toBe('LEVEL_COMPLETE');
   await page.evaluate(() => game.loop.start(game.loop.callback));
+  await page.getByRole('button', { name: 'Next Level', exact: true }).click();
   await ready(page, 1);
   expect(await fresh(1)).toMatchObject({ trees: 2, water: 1, houses: 0, benches: 0, width: 1280, height: 720 });
   await page.screenshot({ path: testInfo.outputPath('two-trees.png') });
-  await page.keyboard.press('r');
+  await page.getByRole('button', { name: 'Restart', exact: true }).click();
   await fresh(1);
 
   expect(await page.evaluate(() => {
@@ -127,6 +129,7 @@ test('intro, playable tutorial routes, clean transitions and final reward', asyn
     });
     game.loop.start(game.loop.callback);
   });
+  await page.getByRole('button', { name: 'Next Level', exact: true }).click();
   await ready(page, 2);
   expect(await page.evaluate(() => window.levelEntry)).toEqual({ exposure: 0, heat: 0,
     phase: -5 / 6, target: -5 / 6, sparks: 0, position: { x: 150, y: 900 }, fish: true, state: 'PLAYING' });
@@ -146,15 +149,15 @@ test('intro, playable tutorial routes, clean transitions and final reward', asyn
   expect(death).toEqual({ state: 'DEAD', reward: false, fish: true });
   const armRestart = async () => page.evaluate(() => {
     const s = game.scene.getScene('GameScene');
-    s.input.keyboard.once('keydown-R', () => {
+    s.restartButton.addEventListener('click', () => {
       window.restartState = { index: s.levelIndex, exposure: s.exposureSystem.currentExposure,
         heat: s.thermometer.heat, phase: s.sunSystem.sunPhase, state: s.state, fish: s.fishBody.visible };
       game.loop.stop();
-    });
+    }, { once: true });
     game.loop.start(game.loop.callback);
   });
   await armRestart();
-  await page.keyboard.press('r');
+  await page.getByRole('button', { name: 'Restart', exact: true }).click();
   expect(await page.evaluate(() => window.restartState)).toEqual({ index: 2, exposure: 0, heat: 0,
     phase: -5 / 6, state: 'PLAYING', fish: true });
   await fresh(2);
@@ -169,7 +172,7 @@ test('intro, playable tutorial routes, clean transitions and final reward', asyn
   await page.evaluate(() => game.loop.start(game.loop.callback));
   await page.screenshot({ path: testInfo.outputPath('final-victory.png') });
   await armRestart();
-  await page.keyboard.press('r');
+  await page.getByRole('button', { name: 'Restart', exact: true }).click();
   await fresh(2);
   expect(errors).toEqual([]);
 });

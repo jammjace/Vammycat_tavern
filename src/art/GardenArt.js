@@ -61,7 +61,7 @@ export class GardenArt {
       const sprite=s.add.image(data.x,data.y,isTree?`${data.texture}-foliage`:data.texture).setOrigin(.5,data.anchorY).setDisplaySize(data.width,data.height).setDepth(data.y+10);
       this.props.push({sprite,bark,...data});
     }
-    for(const b of s.level.buildingObjects)addChalkText(s, b.x,b.y+60,b.name,{fontFamily:'Real Chalk',letterSpacing:1.5,fontSize:'15px',color:'#f1e1ad',backgroundColor:'#3c4934dd',padding:{x:8,y:4}}).setOrigin(.5).setDepth(15);
+    for(const b of s.level.buildingObjects)addChalkText(s, b.x,b.y+60,b.name,{fontFamily:'Eraser Dust',letterSpacing:1.5,fontSize:'15px',color:'#f1e1ad',backgroundColor:'#3c4934dd',padding:{x:8,y:4}}).setOrigin(.5).setDepth(15);
     for(const [index,water] of s.level.waterZones.entries()){
     const key=`garden-pond-${s.level.id}-${index}`;
     this.texture(key,300,170,c=>{

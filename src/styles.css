@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'Real Chalk';
-  src: url('/assets/fonts/real-chalk.otf') format('opentype');
+  font-family: 'Eraser Dust';
+  src: url('/assets/fonts/eraser-dust.ttf') format('truetype');
   font-display: block;
 }
 
 :root {
-  font-family: 'Real Chalk', sans-serif;
+  font-family: 'Eraser Dust', sans-serif;
   line-height: 1.5;
   letter-spacing: 1.5px;
   font-weight: 400;
@@ -37,7 +37,7 @@ body {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 
-.debug-panel { position: absolute; right: 16px; top: 16px; z-index: 10; width: 235px; padding: 12px 14px; background: #203429ee; color: #e8e3c6; border: 1px solid #81916b; border-radius: 8px; font: 16px/1.6 'Real Chalk'; }
+.debug-panel { position: absolute; right: 16px; top: 16px; z-index: 10; width: 235px; padding: 12px 14px; background: #203429ee; color: #e8e3c6; border: 1px solid #81916b; border-radius: 8px; font: 16px/1.6 'Eraser Dust'; }
 .debug-panel summary { cursor: pointer; font-weight: 600; }
 .debug-panel label, .debug-panel small, .debug-panel output { display: block; margin-top: 9px; }
 .debug-panel input[type=range] { width: 170px; vertical-align: middle; }
@@ -52,3 +52,49 @@ canvas {
 }
 
 button, input { font-family: inherit; letter-spacing: inherit; }
+
+.comic-skip {
+  position: absolute;
+  right: 24px;
+  bottom: 20px;
+  z-index: 5;
+  padding: 10px 16px;
+  border: 1px solid #eee6d966;
+  border-radius: 6px;
+  background: #101022bb;
+  color: #fff4dc;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.comic-skip:hover, .comic-skip:focus-visible {
+  background: #34304bee;
+  outline: 2px solid #fff4dc;
+  outline-offset: 3px;
+}
+
+.game-controls {
+  position: absolute;
+  right: 24px;
+  bottom: 16px;
+  z-index: 5;
+  display: flex;
+  gap: 18px;
+}
+.game-controls.result {
+  right: auto;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+}
+.game-controls button {
+  padding: 10px 24px;
+  border: 2px solid #e5d79b;
+  border-radius: 8px;
+  background: #41553b;
+  color: #fff1c4;
+  font-size: 22px;
+  cursor: pointer;
+}
+.game-controls button:hover { background: #617344; }
+.game-controls button:focus-visible { outline: 3px solid #fff1c4; outline-offset: 3px; }

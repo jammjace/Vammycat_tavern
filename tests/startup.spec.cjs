@@ -13,6 +13,8 @@ test('loading feedback, scoped assets, cached art and moving alpha shadows', asy
   release();
   await expect(page.locator('#loading')).toBeHidden();
   expect(requests.some(url => url.includes('/scenery/'))).toBe(false);
+  await page.getByRole('button', { name: 'Skip intro' }).click();
+  await expect.poll(() => page.evaluate(() => window.game?.scene.isActive('IntroScene'))).toBe(true);
   await page.keyboard.press('Enter');
   await expect.poll(() => page.evaluate(() => window.game?.scene.getScene('GameScene')?.art?.groundKey)).toBeTruthy();
   await expect(page.locator('#loading')).toBeHidden();

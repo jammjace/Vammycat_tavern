@@ -1,199 +1,199 @@
 {
-  "fontHash": "101b44538f73d85ad7da86f61bd9a9518320f960f08ac31ce1ce7b217eaf90d6",
+  "fontHash": "f401a2af8618b06ab17c269cf6cc5c76e7eafa9f38663a05a5b7fb29867efebc",
   "metrics": {
-    "|Real Chalk|68px": {
-      "ascent": 78,
-      "descent": 10,
-      "fontSize": 88
+    "|Eraser Dust|68px": {
+      "ascent": 58.005859375,
+      "descent": 6.5279998779296875,
+      "fontSize": 64.53385925292969
     },
-    "|Real Chalk|24px": {
-      "ascent": 28,
-      "descent": 4,
-      "fontSize": 32
+    "|Eraser Dust|24px": {
+      "ascent": 20.47265625,
+      "descent": 2.3040027618408203,
+      "fontSize": 22.77665901184082
     },
-    "|Real Chalk|28px": {
-      "ascent": 32,
-      "descent": 4,
-      "fontSize": 36
+    "|Eraser Dust|28px": {
+      "ascent": 23.884765625,
+      "descent": 2.6880016326904297,
+      "fontSize": 26.57276725769043
     },
-    "|Real Chalk|23px": {
-      "ascent": 27,
-      "descent": 4,
-      "fontSize": 31
+    "|Eraser Dust|23px": {
+      "ascent": 19.61962890625,
+      "descent": 2.2080020904541016,
+      "fontSize": 21.8276309967041
     },
-    "|Real Chalk|19px": {
-      "ascent": 22,
-      "descent": 3,
-      "fontSize": 25
+    "|Eraser Dust|19px": {
+      "ascent": 16.20751953125,
+      "descent": 1.8240013122558594,
+      "fontSize": 18.03152084350586
     },
-    "|Real Chalk|32px": {
-      "ascent": 37,
-      "descent": 5,
-      "fontSize": 42
+    "|Eraser Dust|32px": {
+      "ascent": 27.296875,
+      "descent": 3.072002410888672,
+      "fontSize": 30.368877410888672
     },
-    "|Real Chalk|17px": {
-      "ascent": 20,
-      "descent": 3,
-      "fontSize": 23
+    "|Eraser Dust|17px": {
+      "ascent": 14.50146484375,
+      "descent": 1.6319999694824219,
+      "fontSize": 16.133464813232422
     },
-    "|Real Chalk|16px": {
-      "ascent": 19,
-      "descent": 3,
-      "fontSize": 22
+    "|Eraser Dust|16px": {
+      "ascent": 13.6484375,
+      "descent": 1.536001205444336,
+      "fontSize": 15.184438705444336
     },
-    "|Real Chalk|22px": {
-      "ascent": 25,
-      "descent": 4,
-      "fontSize": 29
+    "|Eraser Dust|22px": {
+      "ascent": 18.7666015625,
+      "descent": 2.112001419067383,
+      "fontSize": 20.878602981567383
     },
-    "|Real Chalk|20px": {
-      "ascent": 23,
-      "descent": 3,
-      "fontSize": 26
+    "|Eraser Dust|20px": {
+      "ascent": 17.060546875,
+      "descent": 1.9200000762939453,
+      "fontSize": 18.980546951293945
     },
-    "|Real Chalk|13px": {
-      "ascent": 15,
-      "descent": 2,
-      "fontSize": 17
+    "|Eraser Dust|13px": {
+      "ascent": 11.08935546875,
+      "descent": 1.2480010986328125,
+      "fontSize": 12.337356567382812
     },
-    "|Real Chalk|18px": {
-      "ascent": 21,
-      "descent": 3,
-      "fontSize": 24
+    "|Eraser Dust|18px": {
+      "ascent": 15.3544921875,
+      "descent": 1.7280006408691406,
+      "fontSize": 17.08249282836914
     },
-    "|Real Chalk|44px": {
-      "ascent": 50,
-      "descent": 7,
-      "fontSize": 57
+    "|Eraser Dust|44px": {
+      "ascent": 37.533203125,
+      "descent": 4.224002838134766,
+      "fontSize": 41.757205963134766
     },
-    "|Real Chalk|42px": {
-      "ascent": 48,
-      "descent": 6,
-      "fontSize": 54
+    "|Eraser Dust|42px": {
+      "ascent": 35.8271484375,
+      "descent": 4.032001495361328,
+      "fontSize": 39.85914993286133
     },
-    "|Real Chalk|15px": {
-      "ascent": 17,
-      "descent": 3,
-      "fontSize": 20
+    "|Eraser Dust|15px": {
+      "ascent": 12.79541015625,
+      "descent": 1.4400014877319336,
+      "fontSize": 14.235411643981934
     }
   },
   "entries": [
     {
-      "key": "[\"VAMMYCAT\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"68px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":78,\"descent\":10,\"fontSize\":88}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
-      "width": 520,
-      "height": 88,
-      "fontKey": "|Real Chalk|68px",
+      "key": "[\"VAMMYCAT\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"68px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":58.005859375,\"descent\":6.5279998779296875,\"fontSize\":64.53385925292969}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
+      "width": 365,
+      "height": 64.53385925292969,
+      "fontKey": "|Eraser Dust|68px",
       "metrics": {
-        "ascent": 78,
-        "descent": 10,
-        "fontSize": 88
+        "ascent": 58.005859375,
+        "descent": 6.5279998779296875,
+        "fontSize": 64.53385925292969
       },
-      "id": "5c3d9f59fe3f981a",
+      "id": "33a4ffa6be8d56ec",
       "groups": [
         "intro"
       ]
     },
     {
-      "key": "[\"A vampire cat. A hungry little quest for a fish.\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"24px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":28,\"descent\":4,\"fontSize\":32}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
-      "width": 899,
-      "height": 32,
-      "fontKey": "|Real Chalk|24px",
+      "key": "[\"GET TO THE FISH\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"24px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":20.47265625,\"descent\":2.3040027618408203,\"fontSize\":22.77665901184082}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
+      "width": 620,
+      "height": 22.77665901184082,
+      "fontKey": "|Eraser Dust|24px",
       "metrics": {
-        "ascent": 28,
-        "descent": 4,
-        "fontSize": 32
+        "ascent": 20.47265625,
+        "descent": 2.3040027618408203,
+        "fontSize": 22.77665901184082
       },
-      "id": "e1a483f8b8ae5490",
+      "id": "3da5a713d8d87079",
       "groups": [
         "intro"
       ]
     },
     {
-      "key": "[\"Sunlight burns. Shadows keep you safe.\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"28px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":32,\"descent\":4,\"fontSize\":36}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
-      "width": 885,
-      "height": 36,
-      "fontKey": "|Real Chalk|28px",
+      "key": "[\"BEFORE THE SUN GETS YOU\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"28px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":23.884765625,\"descent\":2.6880016326904297,\"fontSize\":26.57276725769043}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
+      "width": 569,
+      "height": 26.57276725769043,
+      "fontKey": "|Eraser Dust|28px",
       "metrics": {
-        "ascent": 32,
-        "descent": 4,
-        "fontSize": 36
+        "ascent": 23.884765625,
+        "descent": 2.6880016326904297,
+        "fontSize": 26.57276725769043
       },
-      "id": "63e2e079190bce0e",
+      "id": "ed3a5bccf4de138a",
       "groups": [
         "intro"
       ]
     },
     {
-      "key": "[\"Change the time of day to move the shadows\\nand find a safe path to the fish.\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"23px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":27,\"descent\":4,\"fontSize\":31}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
-      "width": 779,
-      "height": 72,
-      "fontKey": "|Real Chalk|23px",
+      "key": "[\"Your hours of doomscrolling have unlocked\\na special time altering power\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"23px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":19.61962890625,\"descent\":2.2080020904541016,\"fontSize\":21.8276309967041}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
+      "width": 556,
+      "height": 53.6552619934082,
+      "fontKey": "|Eraser Dust|23px",
       "metrics": {
-        "ascent": 27,
-        "descent": 4,
-        "fontSize": 31
+        "ascent": 19.61962890625,
+        "descent": 2.2080020904541016,
+        "fontSize": 21.8276309967041
       },
-      "id": "28f2cfd5e785c26b",
+      "id": "05c92f84b091a3c4",
       "groups": [
         "intro"
       ]
     },
     {
-      "key": "[\"WASD / ARROWS  Move     MOUSE WHEEL / U, H  Change time\\nR  Restart the current level\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"19px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":22,\"descent\":3,\"fontSize\":25}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
-      "width": 853,
-      "height": 60,
-      "fontKey": "|Real Chalk|19px",
+      "key": "[\"WASD / ARROWS  Move     MOUSE WHEEL / U, H  SCROLL TO TURN TIME\\n\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"19px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":16.20751953125,\"descent\":1.8240013122558594,\"fontSize\":18.03152084350586}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
+      "width": 600,
+      "height": 46.06304168701172,
+      "fontKey": "|Eraser Dust|19px",
       "metrics": {
-        "ascent": 22,
-        "descent": 3,
-        "fontSize": 25
+        "ascent": 16.20751953125,
+        "descent": 1.8240013122558594,
+        "fontSize": 18.03152084350586
       },
-      "id": "0c3e9aae7c2a418c",
+      "id": "7d044bdb29e69307",
       "groups": [
         "intro"
       ]
     },
     {
-      "key": "[\"BEGIN\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"32px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":37,\"descent\":5,\"fontSize\":42}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
-      "width": 145,
-      "height": 42,
-      "fontKey": "|Real Chalk|32px",
+      "key": "[\"BEGIN\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"32px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":27.296875,\"descent\":3.072002410888672,\"fontSize\":30.368877410888672}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
+      "width": 85,
+      "height": 30.368877410888672,
+      "fontKey": "|Eraser Dust|32px",
       "metrics": {
-        "ascent": 37,
-        "descent": 5,
-        "fontSize": 42
+        "ascent": 27.296875,
+        "descent": 3.072002410888672,
+        "fontSize": 30.368877410888672
       },
-      "id": "55305331b046a830",
+      "id": "afa8b0557b46ae0f",
       "groups": [
         "intro"
       ]
     },
     {
-      "key": "[\"or press ENTER / SPACE\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"17px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#c9d0a4\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":20,\"descent\":3,\"fontSize\":23}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
-      "width": 314,
-      "height": 23,
-      "fontKey": "|Real Chalk|17px",
+      "key": "[\"or press ENTER / SPACE\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"17px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#c9d0a4\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":14.50146484375,\"descent\":1.6319999694824219,\"fontSize\":16.133464813232422}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
+      "width": 223,
+      "height": 16.133464813232422,
+      "fontKey": "|Eraser Dust|17px",
       "metrics": {
-        "ascent": 20,
-        "descent": 3,
-        "fontSize": 23
+        "ascent": 14.50146484375,
+        "descent": 1.6319999694824219,
+        "fontSize": 16.133464813232422
       },
-      "id": "1637cfe23dea0160",
+      "id": "aa1eb02409650afb",
       "groups": [
         "intro"
       ]
     },
     {
-      "key": "[\"SCROLL TO CHANGE TIME\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"16px\",\"fontStyle\":\"\",\"backgroundColor\":\"#24372ebb\",\"color\":\"#efe8c7\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":19,\"descent\":3,\"fontSize\":22}},{\"left\":10,\"right\":10,\"top\":4,\"bottom\":4},0,1.5]",
-      "width": 306,
-      "height": 30,
-      "fontKey": "|Real Chalk|16px",
+      "key": "[\"SCROLL TO CHANGE TIME\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"16px\",\"fontStyle\":\"\",\"backgroundColor\":\"#24372ebb\",\"color\":\"#efe8c7\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":13.6484375,\"descent\":1.536001205444336,\"fontSize\":15.184438705444336}},{\"left\":10,\"right\":10,\"top\":4,\"bottom\":4},0,1.5]",
+      "width": 227,
+      "height": 23.184438705444336,
+      "fontKey": "|Eraser Dust|16px",
       "metrics": {
-        "ascent": 19,
-        "descent": 3,
-        "fontSize": 22
+        "ascent": 13.6484375,
+        "descent": 1.536001205444336,
+        "fontSize": 15.184438705444336
       },
-      "id": "48e65c05f45d03eb",
+      "id": "6379d6e7b8ba4483",
       "groups": [
         "level-0",
         "level-1",
@@ -201,16 +201,16 @@
       ]
     },
     {
-      "key": "[\"SAFE — IN SHADOW\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"22px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.25)\",\"color\":\"#dfffd7\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":25,\"descent\":4,\"fontSize\":29}},{\"left\":10,\"right\":10,\"top\":6,\"bottom\":6},0,1.5]",
-      "width": 328,
-      "height": 41,
-      "fontKey": "|Real Chalk|22px",
+      "key": "[\"SAFE — IN SHADOW\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"22px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.25)\",\"color\":\"#dfffd7\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":18.7666015625,\"descent\":2.112001419067383,\"fontSize\":20.878602981567383}},{\"left\":10,\"right\":10,\"top\":6,\"bottom\":6},0,1.5]",
+      "width": 217,
+      "height": 32.87860298156738,
+      "fontKey": "|Eraser Dust|22px",
       "metrics": {
-        "ascent": 25,
-        "descent": 4,
-        "fontSize": 29
+        "ascent": 18.7666015625,
+        "descent": 2.112001419067383,
+        "fontSize": 20.878602981567383
       },
-      "id": "741ac62c052a6950",
+      "id": "66e8bf93dcde2d81",
       "groups": [
         "level-0",
         "level-1",
@@ -218,31 +218,31 @@
       ]
     },
     {
-      "key": "[\"LEVEL 1 ? ONE TREE\\nRETRIEVE YOUR FISH\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.08)\",\"color\":\"#f4f1d9\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":23,\"descent\":3,\"fontSize\":26}},{\"left\":8,\"right\":8,\"top\":6,\"bottom\":6},0,1.5]",
-      "width": 321,
-      "height": 64,
-      "fontKey": "|Real Chalk|20px",
+      "key": "[\"LEVEL 1 ? ONE TREE\\nRETRIEVE YOUR FISH\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.08)\",\"color\":\"#f4f1d9\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":17.060546875,\"descent\":1.9200000762939453,\"fontSize\":18.980546951293945}},{\"left\":8,\"right\":8,\"top\":6,\"bottom\":6},0,1.5]",
+      "width": 227,
+      "height": 49.96109390258789,
+      "fontKey": "|Eraser Dust|20px",
       "metrics": {
-        "ascent": 23,
-        "descent": 3,
-        "fontSize": 26
+        "ascent": 17.060546875,
+        "descent": 1.9200000762939453,
+        "fontSize": 18.980546951293945
       },
-      "id": "cea0b607543f747c",
+      "id": "6aa2d90741253e9d",
       "groups": [
         "level-0"
       ]
     },
     {
-      "key": "[\"WASD / ARROWS  Move     SCROLL  Time     SHIFT + SCROLL  Zoom     R  Restart     F2  Debug\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"13px\",\"fontStyle\":\"\",\"backgroundColor\":\"#253c2ddd\",\"color\":\"#e3e7c4\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":15,\"descent\":2,\"fontSize\":17}},{\"left\":10,\"right\":10,\"top\":5,\"bottom\":5},0,1.5]",
-      "width": 907,
-      "height": 27,
-      "fontKey": "|Real Chalk|13px",
+      "key": "[\"WASD / ARROWS  Move     SCROLL  Time     SHIFT + SCROLL  Zoom     F2  Debug\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"13px\",\"fontStyle\":\"\",\"backgroundColor\":\"#253c2ddd\",\"color\":\"#e3e7c4\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":11.08935546875,\"descent\":1.2480010986328125,\"fontSize\":12.337356567382812}},{\"left\":10,\"right\":10,\"top\":5,\"bottom\":5},0,1.5]",
+      "width": 593,
+      "height": 22.337356567382812,
+      "fontKey": "|Eraser Dust|13px",
       "metrics": {
-        "ascent": 15,
-        "descent": 2,
-        "fontSize": 17
+        "ascent": 11.08935546875,
+        "descent": 1.2480010986328125,
+        "fontSize": 12.337356567382812
       },
-      "id": "d5155abd3c24b4fc",
+      "id": "ce54b303b5f22a4b",
       "groups": [
         "level-0",
         "level-1",
@@ -250,16 +250,16 @@
       ]
     },
     {
-      "key": "[\"BURN\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"18px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f8e5ba\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":21,\"descent\":3,\"fontSize\":24}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,1.5]",
-      "width": 73,
-      "height": 24,
-      "fontKey": "|Real Chalk|18px",
+      "key": "[\"BURN\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"18px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f8e5ba\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":15.3544921875,\"descent\":1.7280006408691406,\"fontSize\":17.08249282836914}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,1.5]",
+      "width": 47,
+      "height": 17.08249282836914,
+      "fontKey": "|Eraser Dust|18px",
       "metrics": {
-        "ascent": 21,
-        "descent": 3,
-        "fontSize": 24
+        "ascent": 15.3544921875,
+        "descent": 1.7280006408691406,
+        "fontSize": 17.08249282836914
       },
-      "id": "cecdb3450b47dc04",
+      "id": "5448151b06f52fb4",
       "groups": [
         "level-0",
         "level-1",
@@ -267,16 +267,16 @@
       ]
     },
     {
-      "key": "[\"FISH RETRIEVED!\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"44px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#fff1c4\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":50,\"descent\":7,\"fontSize\":57}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,2]",
-      "width": 558,
-      "height": 57,
-      "fontKey": "|Real Chalk|44px",
+      "key": "[\"FISH RETRIEVED!\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"44px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#fff1c4\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":37.533203125,\"descent\":4.224002838134766,\"fontSize\":41.757205963134766}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,2]",
+      "width": 355,
+      "height": 41.757205963134766,
+      "fontKey": "|Eraser Dust|44px",
       "metrics": {
-        "ascent": 50,
-        "descent": 7,
-        "fontSize": 57
+        "ascent": 37.533203125,
+        "descent": 4.224002838134766,
+        "fontSize": 41.757205963134766
       },
-      "id": "2d435af5208b7ff9",
+      "id": "9ae12b2cfe00da64",
       "groups": [
         "level-0",
         "level-1",
@@ -284,16 +284,16 @@
       ]
     },
     {
-      "key": "[\"A little patience. A little sunshine. A well-earned fish.\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"22px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#fff1c4\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":25,\"descent\":4,\"fontSize\":29}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,2]",
-      "width": 1015,
-      "height": 29,
-      "fontKey": "|Real Chalk|22px",
+      "key": "[\"A little patience. A little sunshine. A well-earned fish.\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"22px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#fff1c4\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":18.7666015625,\"descent\":2.112001419067383,\"fontSize\":20.878602981567383}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,2]",
+      "width": 685,
+      "height": 20.878602981567383,
+      "fontKey": "|Eraser Dust|22px",
       "metrics": {
-        "ascent": 25,
-        "descent": 4,
-        "fontSize": 29
+        "ascent": 18.7666015625,
+        "descent": 2.112001419067383,
+        "fontSize": 20.878602981567383
       },
-      "id": "dc54107deb2c30bd",
+      "id": "839ffa91558877f0",
       "groups": [
         "level-0",
         "level-1",
@@ -301,16 +301,16 @@
       ]
     },
     {
-      "key": "[\"Press R to return to the garden\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#fff1c4\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":23,\"descent\":3,\"fontSize\":26}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,2]",
-      "width": 510,
-      "height": 26,
-      "fontKey": "|Real Chalk|20px",
+      "key": "[\"The garden awaits another adventure.\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#fff1c4\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":17.060546875,\"descent\":1.9200000762939453,\"fontSize\":18.980546951293945}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,2]",
+      "width": 429,
+      "height": 18.980546951293945,
+      "fontKey": "|Eraser Dust|20px",
       "metrics": {
-        "ascent": 23,
-        "descent": 3,
-        "fontSize": 26
+        "ascent": 17.060546875,
+        "descent": 1.9200000762939453,
+        "fontSize": 18.980546951293945
       },
-      "id": "78514d50cf486859",
+      "id": "f4c6db9d004e4955",
       "groups": [
         "level-0",
         "level-1",
@@ -318,16 +318,16 @@
       ]
     },
     {
-      "key": "[\"SAFE — IN SHADOW\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"22px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.25)\",\"color\":\"#ffb3b3\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":25,\"descent\":4,\"fontSize\":29}},{\"left\":10,\"right\":10,\"top\":6,\"bottom\":6},0,1.5]",
-      "width": 328,
-      "height": 41,
-      "fontKey": "|Real Chalk|22px",
+      "key": "[\"SAFE — IN SHADOW\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"22px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.25)\",\"color\":\"#ffb3b3\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":18.7666015625,\"descent\":2.112001419067383,\"fontSize\":20.878602981567383}},{\"left\":10,\"right\":10,\"top\":6,\"bottom\":6},0,1.5]",
+      "width": 217,
+      "height": 32.87860298156738,
+      "fontKey": "|Eraser Dust|22px",
       "metrics": {
-        "ascent": 25,
-        "descent": 4,
-        "fontSize": 29
+        "ascent": 18.7666015625,
+        "descent": 2.112001419067383,
+        "fontSize": 20.878602981567383
       },
-      "id": "7b71c13fbdb39944",
+      "id": "b27d91db56f9af2b",
       "groups": [
         "level-0",
         "level-1",
@@ -335,16 +335,16 @@
       ]
     },
     {
-      "key": "[\"SCALDING!\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"22px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.25)\",\"color\":\"#dfffd7\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":25,\"descent\":4,\"fontSize\":29}},{\"left\":10,\"right\":10,\"top\":6,\"bottom\":6},0,1.5]",
-      "width": 208,
-      "height": 41,
-      "fontKey": "|Real Chalk|22px",
+      "key": "[\"SCALDING!\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"22px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.25)\",\"color\":\"#dfffd7\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":18.7666015625,\"descent\":2.112001419067383,\"fontSize\":20.878602981567383}},{\"left\":10,\"right\":10,\"top\":6,\"bottom\":6},0,1.5]",
+      "width": 130,
+      "height": 32.87860298156738,
+      "fontKey": "|Eraser Dust|22px",
       "metrics": {
-        "ascent": 25,
-        "descent": 4,
-        "fontSize": 29
+        "ascent": 18.7666015625,
+        "descent": 2.112001419067383,
+        "fontSize": 20.878602981567383
       },
-      "id": "061eaa0bc33db486",
+      "id": "ef2315fde71565bf",
       "groups": [
         "level-0",
         "level-1",
@@ -352,16 +352,16 @@
       ]
     },
     {
-      "key": "[\"SCALDING!\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"22px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.25)\",\"color\":\"#ffb3b3\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":25,\"descent\":4,\"fontSize\":29}},{\"left\":10,\"right\":10,\"top\":6,\"bottom\":6},0,1.5]",
-      "width": 208,
-      "height": 41,
-      "fontKey": "|Real Chalk|22px",
+      "key": "[\"SCALDING!\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"22px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.25)\",\"color\":\"#ffb3b3\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":18.7666015625,\"descent\":2.112001419067383,\"fontSize\":20.878602981567383}},{\"left\":10,\"right\":10,\"top\":6,\"bottom\":6},0,1.5]",
+      "width": 130,
+      "height": 32.87860298156738,
+      "fontKey": "|Eraser Dust|22px",
       "metrics": {
-        "ascent": 25,
-        "descent": 4,
-        "fontSize": 29
+        "ascent": 18.7666015625,
+        "descent": 2.112001419067383,
+        "fontSize": 20.878602981567383
       },
-      "id": "e457565ee267fbad",
+      "id": "ad1b1484cda5051d",
       "groups": [
         "level-0",
         "level-1",
@@ -369,16 +369,16 @@
       ]
     },
     {
-      "key": "[\"ALAS!\\nTHOU HATH PERISHED\\nWITH THE SUN.\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"42px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#fce6a6\",\"stroke\":\"#000000\",\"strokeThickness\":4,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":48,\"descent\":6,\"fontSize\":54}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,1.5]",
-      "width": 639,
-      "height": 174,
-      "fontKey": "|Real Chalk|42px",
+      "key": "[\"ALAS!\\nTHOU HATH PERISHED\\nWITH THE SUN.\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"42px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#fce6a6\",\"stroke\":\"#000000\",\"strokeThickness\":4,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":35.8271484375,\"descent\":4.032001495361328,\"fontSize\":39.85914993286133}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,1.5]",
+      "width": 421,
+      "height": 131.57744979858398,
+      "fontKey": "|Eraser Dust|42px",
       "metrics": {
-        "ascent": 48,
-        "descent": 6,
-        "fontSize": 54
+        "ascent": 35.8271484375,
+        "descent": 4.032001495361328,
+        "fontSize": 39.85914993286133
       },
-      "id": "3826085df2640183",
+      "id": "b427b32615112c61",
       "groups": [
         "level-0",
         "level-1",
@@ -386,16 +386,16 @@
       ]
     },
     {
-      "key": "[\"Press R to play again\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f3f0d8\",\"stroke\":\"#000000\",\"strokeThickness\":3,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":23,\"descent\":3,\"fontSize\":26}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,1.5]",
-      "width": 332,
-      "height": 29,
-      "fontKey": "|Real Chalk|20px",
+      "key": "[\"Press R to play again\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f3f0d8\",\"stroke\":\"#000000\",\"strokeThickness\":3,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":17.060546875,\"descent\":1.9200000762939453,\"fontSize\":18.980546951293945}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,1.5]",
+      "width": 234,
+      "height": 21.980546951293945,
+      "fontKey": "|Eraser Dust|20px",
       "metrics": {
-        "ascent": 23,
-        "descent": 3,
-        "fontSize": 26
+        "ascent": 17.060546875,
+        "descent": 1.9200000762939453,
+        "fontSize": 18.980546951293945
       },
-      "id": "bf968b01262c6ef3",
+      "id": "71220334542a82ac",
       "groups": [
         "level-0",
         "level-1",
@@ -403,16 +403,16 @@
       ]
     },
     {
-      "key": "[\"LEVEL COMPLETE\\nFISH RETRIEVED!\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"42px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#fce6a6\",\"stroke\":\"#000000\",\"strokeThickness\":4,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":48,\"descent\":6,\"fontSize\":54}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,1.5]",
-      "width": 531,
-      "height": 116,
-      "fontKey": "|Real Chalk|42px",
+      "key": "[\"LEVEL COMPLETE\\nFISH RETRIEVED!\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"42px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#fce6a6\",\"stroke\":\"#000000\",\"strokeThickness\":4,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":35.8271484375,\"descent\":4.032001495361328,\"fontSize\":39.85914993286133}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,1.5]",
+      "width": 351,
+      "height": 87.71829986572266,
+      "fontKey": "|Eraser Dust|42px",
       "metrics": {
-        "ascent": 48,
-        "descent": 6,
-        "fontSize": 54
+        "ascent": 35.8271484375,
+        "descent": 4.032001495361328,
+        "fontSize": 39.85914993286133
       },
-      "id": "0bb31840d4109480",
+      "id": "c080e1a84988052b",
       "groups": [
         "level-0",
         "level-1",
@@ -420,16 +420,16 @@
       ]
     },
     {
-      "key": "[\"Next: Level 2 · Beside the pond\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f3f0d8\",\"stroke\":\"#000000\",\"strokeThickness\":3,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":23,\"descent\":3,\"fontSize\":26}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,1.5]",
-      "width": 500,
-      "height": 29,
-      "fontKey": "|Real Chalk|20px",
+      "key": "[\"Next: Level 2 · Beside the pond\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f3f0d8\",\"stroke\":\"#000000\",\"strokeThickness\":3,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":17.060546875,\"descent\":1.9200000762939453,\"fontSize\":18.980546951293945}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,1.5]",
+      "width": 337,
+      "height": 21.980546951293945,
+      "fontKey": "|Eraser Dust|20px",
       "metrics": {
-        "ascent": 23,
-        "descent": 3,
-        "fontSize": 26
+        "ascent": 17.060546875,
+        "descent": 1.9200000762939453,
+        "fontSize": 18.980546951293945
       },
-      "id": "25b7310a246793a6",
+      "id": "58363db24f4d7f52",
       "groups": [
         "level-0",
         "level-1",
@@ -437,16 +437,16 @@
       ]
     },
     {
-      "key": "[\"Next: Willowcross · The sundial garden\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f3f0d8\",\"stroke\":\"#000000\",\"strokeThickness\":3,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":23,\"descent\":3,\"fontSize\":26}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,1.5]",
-      "width": 643,
-      "height": 29,
-      "fontKey": "|Real Chalk|20px",
+      "key": "[\"Next: Willowcross · The sundial garden\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f3f0d8\",\"stroke\":\"#000000\",\"strokeThickness\":3,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":17.060546875,\"descent\":1.9200000762939453,\"fontSize\":18.980546951293945}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},0,1.5]",
+      "width": 420,
+      "height": 21.980546951293945,
+      "fontKey": "|Eraser Dust|20px",
       "metrics": {
-        "ascent": 23,
-        "descent": 3,
-        "fontSize": 26
+        "ascent": 17.060546875,
+        "descent": 1.9200000762939453,
+        "fontSize": 18.980546951293945
       },
-      "id": "3c95e27b4ca0d5e8",
+      "id": "744e668ff24ac3c6",
       "groups": [
         "level-0",
         "level-1",
@@ -454,91 +454,91 @@
       ]
     },
     {
-      "key": "[\"LEVEL 2 · BESIDE THE POND\\nRETRIEVE YOUR FISH\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.08)\",\"color\":\"#f4f1d9\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":23,\"descent\":3,\"fontSize\":26}},{\"left\":8,\"right\":8,\"top\":6,\"bottom\":6},0,1.5]",
-      "width": 415,
-      "height": 64,
-      "fontKey": "|Real Chalk|20px",
+      "key": "[\"LEVEL 2 · BESIDE THE POND\\nRETRIEVE YOUR FISH\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.08)\",\"color\":\"#f4f1d9\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":17.060546875,\"descent\":1.9200000762939453,\"fontSize\":18.980546951293945}},{\"left\":8,\"right\":8,\"top\":6,\"bottom\":6},0,1.5]",
+      "width": 290,
+      "height": 49.96109390258789,
+      "fontKey": "|Eraser Dust|20px",
       "metrics": {
-        "ascent": 23,
-        "descent": 3,
-        "fontSize": 26
+        "ascent": 17.060546875,
+        "descent": 1.9200000762939453,
+        "fontSize": 18.980546951293945
       },
-      "id": "6609c412a73fe1d9",
+      "id": "6ef14bea2311bfa5",
       "groups": [
         "level-1"
       ]
     },
     {
-      "key": "[\"BAKERY\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"15px\",\"fontStyle\":\"\",\"backgroundColor\":\"#3c4934dd\",\"color\":\"#f1e1ad\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":17,\"descent\":3,\"fontSize\":20}},{\"left\":8,\"right\":8,\"top\":4,\"bottom\":4},0,1.5]",
-      "width": 102,
-      "height": 28,
-      "fontKey": "|Real Chalk|15px",
+      "key": "[\"BAKERY\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"15px\",\"fontStyle\":\"\",\"backgroundColor\":\"#3c4934dd\",\"color\":\"#f1e1ad\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":12.79541015625,\"descent\":1.4400014877319336,\"fontSize\":14.235411643981934}},{\"left\":8,\"right\":8,\"top\":4,\"bottom\":4},0,1.5]",
+      "width": 73,
+      "height": 22.235411643981934,
+      "fontKey": "|Eraser Dust|15px",
       "metrics": {
-        "ascent": 17,
-        "descent": 3,
-        "fontSize": 20
+        "ascent": 12.79541015625,
+        "descent": 1.4400014877319336,
+        "fontSize": 14.235411643981934
       },
-      "id": "1541efc2e99fbb19",
+      "id": "9ae91e6dcdaae74f",
       "groups": [
         "level-2"
       ]
     },
     {
-      "key": "[\"COTTAGE\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"15px\",\"fontStyle\":\"\",\"backgroundColor\":\"#3c4934dd\",\"color\":\"#f1e1ad\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":17,\"descent\":3,\"fontSize\":20}},{\"left\":8,\"right\":8,\"top\":4,\"bottom\":4},0,1.5]",
-      "width": 115,
-      "height": 28,
-      "fontKey": "|Real Chalk|15px",
+      "key": "[\"COTTAGE\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"15px\",\"fontStyle\":\"\",\"backgroundColor\":\"#3c4934dd\",\"color\":\"#f1e1ad\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":12.79541015625,\"descent\":1.4400014877319336,\"fontSize\":14.235411643981934}},{\"left\":8,\"right\":8,\"top\":4,\"bottom\":4},0,1.5]",
+      "width": 85,
+      "height": 22.235411643981934,
+      "fontKey": "|Eraser Dust|15px",
       "metrics": {
-        "ascent": 17,
-        "descent": 3,
-        "fontSize": 20
+        "ascent": 12.79541015625,
+        "descent": 1.4400014877319336,
+        "fontSize": 14.235411643981934
       },
-      "id": "2e7aa3c5f5160483",
+      "id": "e93068e1459aaf52",
       "groups": [
         "level-2"
       ]
     },
     {
-      "key": "[\"TAVERN\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"15px\",\"fontStyle\":\"\",\"backgroundColor\":\"#3c4934dd\",\"color\":\"#f1e1ad\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":17,\"descent\":3,\"fontSize\":20}},{\"left\":8,\"right\":8,\"top\":4,\"bottom\":4},0,1.5]",
-      "width": 102,
-      "height": 28,
-      "fontKey": "|Real Chalk|15px",
+      "key": "[\"TAVERN\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"15px\",\"fontStyle\":\"\",\"backgroundColor\":\"#3c4934dd\",\"color\":\"#f1e1ad\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":12.79541015625,\"descent\":1.4400014877319336,\"fontSize\":14.235411643981934}},{\"left\":8,\"right\":8,\"top\":4,\"bottom\":4},0,1.5]",
+      "width": 78,
+      "height": 22.235411643981934,
+      "fontKey": "|Eraser Dust|15px",
       "metrics": {
-        "ascent": 17,
-        "descent": 3,
-        "fontSize": 20
+        "ascent": 12.79541015625,
+        "descent": 1.4400014877319336,
+        "fontSize": 14.235411643981934
       },
-      "id": "a15708f8cfbd867a",
+      "id": "682550a0e9609386",
       "groups": [
         "level-2"
       ]
     },
     {
-      "key": "[\"WORKSHOP\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"15px\",\"fontStyle\":\"\",\"backgroundColor\":\"#3c4934dd\",\"color\":\"#f1e1ad\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":17,\"descent\":3,\"fontSize\":20}},{\"left\":8,\"right\":8,\"top\":4,\"bottom\":4},0,1.5]",
-      "width": 144,
-      "height": 28,
-      "fontKey": "|Real Chalk|15px",
+      "key": "[\"WORKSHOP\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"15px\",\"fontStyle\":\"\",\"backgroundColor\":\"#3c4934dd\",\"color\":\"#f1e1ad\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":12.79541015625,\"descent\":1.4400014877319336,\"fontSize\":14.235411643981934}},{\"left\":8,\"right\":8,\"top\":4,\"bottom\":4},0,1.5]",
+      "width": 97,
+      "height": 22.235411643981934,
+      "fontKey": "|Eraser Dust|15px",
       "metrics": {
-        "ascent": 17,
-        "descent": 3,
-        "fontSize": 20
+        "ascent": 12.79541015625,
+        "descent": 1.4400014877319336,
+        "fontSize": 14.235411643981934
       },
-      "id": "b5f28d16ec443508",
+      "id": "3576c0458bfc3207",
       "groups": [
         "level-2"
       ]
     },
     {
-      "key": "[\"RETRIEVE YOUR FISH\\nScroll time to connect the shadows\\nRest at roots & shaded benches\",{\"fontFamily\":\"Real Chalk\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.08)\",\"color\":\"#f4f1d9\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":23,\"descent\":3,\"fontSize\":26}},{\"left\":8,\"right\":8,\"top\":6,\"bottom\":6},0,1.5]",
-      "width": 580,
-      "height": 90,
-      "fontKey": "|Real Chalk|20px",
+      "key": "[\"RETRIEVE YOUR FISH\\nScroll time to connect the shadows\\nRest at roots & shaded benches\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"20px\",\"fontStyle\":\"\",\"backgroundColor\":\"rgba(0,0,0,0.08)\",\"color\":\"#f4f1d9\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"left\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":17.060546875,\"descent\":1.9200000762939453,\"fontSize\":18.980546951293945}},{\"left\":8,\"right\":8,\"top\":6,\"bottom\":6},0,1.5]",
+      "width": 415,
+      "height": 68.94164085388184,
+      "fontKey": "|Eraser Dust|20px",
       "metrics": {
-        "ascent": 23,
-        "descent": 3,
-        "fontSize": 26
+        "ascent": 17.060546875,
+        "descent": 1.9200000762939453,
+        "fontSize": 18.980546951293945
       },
-      "id": "858a6516b53d6b19",
+      "id": "793d0b8718a66cdf",
       "groups": [
         "level-2"
       ]
