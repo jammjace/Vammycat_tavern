@@ -87,6 +87,11 @@ button, input { font-family: inherit; letter-spacing: inherit; }
   bottom: 24px;
   transform: translateX(-50%);
 }
+/* Death screen: tuck Restart right under the "Try the shadows again." line (canvas y ~475). */
+.game-controls.result.lost {
+  top: 505px;
+  bottom: auto;
+}
 .game-controls button {
   padding: 10px 24px;
   border: 2px solid #e5d79b;

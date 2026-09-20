@@ -64,7 +64,7 @@ test('intro, playable tutorial routes, clean transitions and final reward', asyn
   const fresh = async index => {
     const s = await inspect();
     expect(s).toMatchObject({ index, state: 'PLAYING', clock: '07:00',
-      target: -5 / 6, fish: true, panels: 1, cameras: 2, zoom: 1, uiZoom: 1 });
+      target: -5 / 6, fish: true, panels: 1, cameras: 3, zoom: 1, uiZoom: 1 });
     // The unchanged Willowcross spawn is not sheltered at every sway phase.
     // Its zeroed entry/reset state is checked synchronously below instead.
     if (index < 2) expect(s).toMatchObject({ safe: true, exposure: 0, heat: 0 });

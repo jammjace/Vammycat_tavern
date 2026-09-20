@@ -33,10 +33,10 @@ export class IntroScene extends Phaser.Scene {
     text(102, 'VAMMYCAT', 68);
     this.add.ellipse(640, 222, 95, 18, 0x10291d, .6);
     this.add.image(640, 191, 'cat-1').setDisplaySize(150, 90);
-    text(269, 'A vampire cat. A hungry little quest for a fish.', 24);
-    text(329, 'Sunlight burns. Shadows keep you safe.', 28);
-    text(386, 'Change the time of day to move the shadows\nand find a safe path to the fish.', 23);
-    text(475, 'WASD / ARROWS  Move     MOUSE WHEEL / U, H  Change time\nUse Restart to try the current level again', 19);
+    text(269, 'GET TO THE FISH', 28);
+    text(300, 'BEFORE THE SUN GETS TO YOU', 28);
+    text(386, 'Hours of doomscrolling on VikVok\nhas unlocked a time altering power within', 23);
+    text(475, 'WASD / ARROWS  Move     MOUSE WHEEL / U, H  Alter spacetime\nUse Restart to try the current level again', 19);
     const button = this.add.rectangle(640, 572, 240, 60, 0x617344)
       .setStrokeStyle(2, 0xe5d79b).setInteractive({ useHandCursor: true });
     text(572, 'BEGIN', 32);

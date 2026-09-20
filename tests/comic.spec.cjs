@@ -1,11 +1,19 @@
 const { test, expect } = require('@playwright/test');
 
+test.use({ launchOptions: { args: ['--autoplay-policy=no-user-gesture-required'] } });
+
 test('comic plays five panels with a centered gliding cat, then hands off to Begin', async ({ page }, testInfo) => {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/');
   await expect(page.getByRole('button', { name: 'Skip intro' })).toBeVisible();
   await expect(page.locator('#loading')).toBeHidden();
+  await expect(page.getByRole('button', { name: 'Play comic', exact: true })).toHaveCount(0);
+  await expect.poll(() => page.evaluate(() => game.scene.getScene('ComicScene').comicAudio.isPlaying)).toBe(true);
+  expect(await page.evaluate(() => {
+    const s = game.scene.getScene('ComicScene');
+    return s.slideMs * 5 / 1000;
+  })).toBeCloseTo(15.57, 1);
   await page.waitForTimeout(650);
   const first = await page.evaluate(() => {
     const s = game.scene.getScene('ComicScene');
@@ -45,6 +53,7 @@ test('comic plays five panels with a centered gliding cat, then hands off to Beg
   }
   await expect.poll(() => page.evaluate(() => game.scene.isActive('IntroScene'))).toBe(true);
   await expect(page.getByRole('button', { name: 'Skip intro' })).toHaveCount(0);
+  expect(await page.evaluate(() => game.sound.getAll('comic-audio').length)).toBe(0);
   await page.keyboard.press('Enter');
   await expect.poll(() => page.evaluate(() => game.scene.getScene('GameScene')?.state)).toBe('PLAYING');
   await page.keyboard.press('r');
@@ -58,4 +67,24 @@ test('Escape skips the comic and removes its controls', async ({ page }) => {
   await page.keyboard.press('Escape');
   await expect.poll(() => page.evaluate(() => game.scene.isActive('IntroScene'))).toBe(true);
   await expect(page.getByRole('button', { name: 'Skip intro' })).toHaveCount(0);
+  expect(await page.evaluate(() => game.sound.getAll('comic-audio').length)).toBe(0);
+});
+
+
+test('comic starts without a button and audio joins in sync on interaction', async ({ playwright }) => {
+    const browser = await playwright.chromium.launch({ channel: 'chrome', args: ['--autoplay-policy=user-gesture-required'] });
+    const page = await browser.newPage();
+    try {
+    await page.goto('http://127.0.0.1:5175');
+    await expect(page.getByRole('button', { name: 'Skip intro' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Play comic' })).toHaveCount(0);
+    await expect.poll(() => page.evaluate(() => game.scene.getScene('ComicScene').elapsedMs)).toBeGreaterThan(1000);
+    await page.locator('canvas').click({ position: { x: 100, y: 100 } });
+    await expect.poll(() => page.evaluate(() => {
+      const s = game.scene.getScene('ComicScene');
+      return s.comicAudio.isPlaying && Math.abs(s.comicAudio.seek * 1000 - s.elapsedMs) < 150;
+    })).toBe(true);
+    await page.getByRole('button', { name: 'Skip intro' }).click();
+    await expect.poll(() => page.evaluate(() => game.scene.isActive('IntroScene'))).toBe(true);
+    } finally { await browser.close(); }
 });

@@ -1,4 +1,4 @@
-import { addChalkText, loadChalkText } from '../art/ChalkText.js';
+import { ChalkText, addChalkText, loadChalkText } from '../art/ChalkText.js';
 import { trackLoading } from '../loading.js';
 import { timed, record, trackPreload, trackFirstFrame } from '../startupTiming.js';
 import Phaser from 'phaser';
@@ -16,6 +16,7 @@ import { CampbreezePipeline } from '../art/CampbreezePipeline.js';
 import { BurnThermometer } from '../systems/BurnThermometer.js';
 import { GameAudio } from '../systems/GameAudio.js';
 import { DebugPanel } from '../systems/DebugPanel.js';
+import { makeBiteTextures } from '../art/BiteArt.js';
 
 export class GameScene extends Phaser.Scene {
   constructor() {
@@ -43,6 +44,7 @@ export class GameScene extends Phaser.Scene {
     }
     if (this.level.buildingObjects.length) image('house-art', 'scenery/house.png');
     for (let i = 1; i <= 4; i++) image(`cat-${i}`, `cat/run-0${i}.png`);
+    for (const pose of ['open', 'closed']) image(`bite-${pose}-source`, `cat/bite-${pose}.jpg`);
   }
 
   create() {
@@ -59,6 +61,9 @@ export class GameScene extends Phaser.Scene {
 
     this.art = timed(`${this.startupTag}:art`, () => new GardenArt(this));
     this.player = new Player(this, this.level.start.x, this.level.start.y);
+    makeBiteTextures(this);
+    this.biteSprite = this.add.image(0, 0, 'bite-open').setOrigin(.5, .8).setVisible(false);
+    this.biteElapsed = null;
     this.sunSystem = new SunSystem(this);
     this.exposureSystem = new ExposureSystem(this);
     this.exposureSystem.burnRate = this.level.burnRate;
@@ -182,9 +187,15 @@ export class GameScene extends Phaser.Scene {
     // Separate cameras keep HUD positioning independent of map zoom.
     const uiObjects=this.children.list.filter(object=>object.depth>=5000);
     const worldObjects=this.children.list.filter(object=>object.depth<5000);
+    // UI text gets its own camera drawn after (above) the paint-shaded UI camera, so the shader never distorts lettering.
+    const uiText=uiObjects.filter(object=>object instanceof ChalkText);
+    const uiArt=uiObjects.filter(object=>!(object instanceof ChalkText));
+    this.hudText=uiText.filter(object=>object.depth<6000);
     this.cameras.main.ignore(uiObjects);
     this.uiCamera=this.cameras.add(0,0,1280,720,false,'UI');
-    this.uiCamera.ignore(worldObjects);
+    this.uiCamera.ignore([...worldObjects,...uiText]);
+    this.uiTextCamera=this.cameras.add(0,0,1280,720,false,'UI text');
+    this.uiTextCamera.ignore([...worldObjects,...uiArt]);
     const shaderStart = performance.now();
     if(this.renderer.type===Phaser.WEBGL){
       if(!this.renderer.pipelines.postPipelineClasses.has('Campbreeze'))this.renderer.pipelines.addPostPipeline('Campbreeze',CampbreezePipeline);
@@ -200,6 +211,11 @@ export class GameScene extends Phaser.Scene {
     this.updateCollisionDebug();
     record(`${this.startupTag}:create`, createStart);
     trackFirstFrame(this);
+  }
+
+  // The text camera sits above every shaded overlay, so full-screen result screens must hide the HUD text themselves.
+  setHudTextVisible(visible) {
+    for (const text of this.hudText) text.setVisible(visible);
   }
 
   setMapZoom(value) {
@@ -237,16 +253,20 @@ export class GameScene extends Phaser.Scene {
 
   showResultButtons() {
     this.controls.classList.add('result');
+    this.controls.classList.toggle('lost', this.state === 'DEAD');
     this.nextButton.hidden = this.state !== 'LEVEL_COMPLETE';
   }
 
   resetLevel() {
     this.audio.reset();
-    this.controls.classList.remove('result');
+    this.controls.classList.remove('result', 'lost');
     this.nextButton.hidden = true;
     this.transitionTimer?.remove(false);
     this.transitionTimer = null;
     this.reward.hide();
+    this.biteElapsed = null;
+    this.biteSprite.setVisible(false);
+    this.setHudTextVisible(true);
     this.deathOverlay.setVisible(false);
     this.deathOverlay.setFillStyle(0x9e2428, .5);
     this.state = 'PLAYING';
@@ -277,6 +297,7 @@ export class GameScene extends Phaser.Scene {
     const deltaSeconds = Math.min(delta / 1000, .05);
     this.windSystem.update(_time, deltaSeconds);
     this.reward.update(deltaSeconds);
+    this.updateBite(deltaSeconds);
     this.art.update(this.sunSystem);
 
     if (this.state !== 'PLAYING') {
@@ -333,6 +354,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   checkFishPickup() {
+    if (this.state !== 'PLAYING') return;
     const fish = this.fishGoal;
     const player = this.player.getPosition();
     const distance = Math.hypot(player.x - fish.x, player.y - fish.y);
@@ -341,18 +363,37 @@ export class GameScene extends Phaser.Scene {
       this.state = 'WON';
       this.audio.finish(true);
       this.player.stop();
-      if (this.levelIndex === levels.length - 1) {
-        this.reward.show(this.fishBody);
+      this.state = this.levelIndex === levels.length - 1 ? 'WON' : 'LEVEL_COMPLETE';
+      const sprite = this.player.sprite;
+      this.biteSprite.setTexture('bite-open').setPosition(sprite.x, sprite.y)
+        .setScale(sprite.displayHeight / 730).setFlipX(sprite.flipX)
+        .setDepth(sprite.depth + 1).setVisible(true);
+      sprite.setVisible(false);
+      this.player.trail.clear();
+      this.biteElapsed = 0;
+      this.setHudTextVisible(false);
+    }
+  }
+
+  updateBite(dt) {
+    if (this.biteElapsed === null) return;
+    this.biteElapsed += dt;
+    if (this.biteElapsed >= .45) {
+      this.biteSprite.setTexture('bite-closed');
+      this.fishGlow.setVisible(false);
+      this.fishBody.setVisible(false);
+    }
+    if (this.biteElapsed >= 1.25) {
+      this.biteElapsed = null;
+      if (this.state === 'WON') {
+        this.reward.show(this.biteSprite);
       } else {
-        this.state = 'LEVEL_COMPLETE';
         this.deathOverlay.setFillStyle(0x172a29, .86).setVisible(true);
         this.overlayText.setText('LEVEL COMPLETE\nFISH RETRIEVED!').setVisible(true);
         this.overlaySubText.setText(`Next: ${levels[this.levelIndex + 1].name}`).setVisible(true);
 
       }
       this.showResultButtons();
-      this.fishGlow.setVisible(false);
-      this.fishBody.setVisible(false);
     }
   }
 

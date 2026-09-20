@@ -14,13 +14,13 @@ export function hideLoading() {
 }
 
 export function trackLoading(scene) {
-  showLoading('finding a path through the shadows...', 0);
-  const progress = value => showLoading('finding a path through the shadows...', value);
+  showLoading('catching the fish...', 0);
+  const progress = value => showLoading('planting the trees...', value);
   scene.load.on('progress', progress);
   scene.events.once('shutdown', () => scene.load.off('progress', progress));
   scene.load.once('complete', () => {
     scene.load.off('progress', progress);
-    showLoading('bringing the garden to life...', 1);
+    showLoading('living life...', 1);
   });
   scene.events.once('create', () => scene.game.events.once('postrender', hideLoading));
 }

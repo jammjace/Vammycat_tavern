@@ -95,7 +95,7 @@
     },
     {
       "key": "[\"GET TO THE FISH\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"24px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":20.47265625,\"descent\":2.3040027618408203,\"fontSize\":22.77665901184082}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
-      "width": 620,
+      "width": 196,
       "height": 22.77665901184082,
       "fontKey": "|Eraser Dust|24px",
       "metrics": {
@@ -103,14 +103,14 @@
         "descent": 2.3040027618408203,
         "fontSize": 22.77665901184082
       },
-      "id": "3da5a713d8d87079",
+      "id": "517c03160f5d3e64",
       "groups": [
         "intro"
       ]
     },
     {
-      "key": "[\"BEFORE THE SUN GETS YOU\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"28px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":23.884765625,\"descent\":2.6880016326904297,\"fontSize\":26.57276725769043}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
-      "width": 569,
+      "key": "[\"BEFORE THE SUN GETS TO YOU\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"28px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":23.884765625,\"descent\":2.6880016326904297,\"fontSize\":26.57276725769043}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
+      "width": 409,
       "height": 26.57276725769043,
       "fontKey": "|Eraser Dust|28px",
       "metrics": {
@@ -118,14 +118,14 @@
         "descent": 2.6880016326904297,
         "fontSize": 26.57276725769043
       },
-      "id": "ed3a5bccf4de138a",
+      "id": "cdf7078f46ab9634",
       "groups": [
         "intro"
       ]
     },
     {
-      "key": "[\"Your hours of doomscrolling have unlocked\\na special time altering power\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"23px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":19.61962890625,\"descent\":2.2080020904541016,\"fontSize\":21.8276309967041}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
-      "width": 556,
+      "key": "[\"Hours of doomscrolling on VikVok\\nhas unlocked a time altering power within\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"23px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":19.61962890625,\"descent\":2.2080020904541016,\"fontSize\":21.8276309967041}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
+      "width": 521,
       "height": 53.6552619934082,
       "fontKey": "|Eraser Dust|23px",
       "metrics": {
@@ -133,14 +133,14 @@
         "descent": 2.2080020904541016,
         "fontSize": 21.8276309967041
       },
-      "id": "05c92f84b091a3c4",
+      "id": "61cb2550b63fca9a",
       "groups": [
         "intro"
       ]
     },
     {
-      "key": "[\"WASD / ARROWS  Move     MOUSE WHEEL / U, H  SCROLL TO TURN TIME\\n\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"19px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":16.20751953125,\"descent\":1.8240013122558594,\"fontSize\":18.03152084350586}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
-      "width": 600,
+      "key": "[\"WASD / ARROWS  Move     MOUSE WHEEL / U, H  Alter spacetime\\nUse Restart to try the current level again\",{\"fontFamily\":\"Eraser Dust\",\"fontSize\":\"19px\",\"fontStyle\":\"\",\"backgroundColor\":null,\"color\":\"#f4e9bf\",\"stroke\":\"#fff\",\"strokeThickness\":0,\"shadowOffsetX\":0,\"shadowOffsetY\":0,\"shadowColor\":\"#000\",\"shadowBlur\":0,\"shadowStroke\":false,\"shadowFill\":false,\"align\":\"center\",\"maxLines\":0,\"fixedWidth\":0,\"fixedHeight\":0,\"resolution\":1,\"rtl\":false,\"testString\":\"|MÃ‰qgy\",\"baselineX\":1.2,\"baselineY\":1.4,\"wordWrapWidth\":null,\"wordWrapCallback\":null,\"wordWrapCallbackScope\":null,\"wordWrapUseAdvanced\":false,\"metrics\":{\"ascent\":16.20751953125,\"descent\":1.8240013122558594,\"fontSize\":18.03152084350586}},{\"left\":0,\"right\":0,\"top\":0,\"bottom\":0},10,1.5]",
+      "width": 646,
       "height": 46.06304168701172,
       "fontKey": "|Eraser Dust|19px",
       "metrics": {
@@ -148,7 +148,7 @@
         "descent": 1.8240013122558594,
         "fontSize": 18.03152084350586
       },
-      "id": "7d044bdb29e69307",
+      "id": "b2ac84022484b7dd",
       "groups": [
         "intro"
       ]

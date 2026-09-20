@@ -1,3 +1,5 @@
+import { ThemeMusic } from './ThemeMusic.js';
+
 const names = ['run', 'wind', 'burn', 'win', 'lose', 'tick'];
 
 export function loadClick(scene) {
@@ -10,6 +12,7 @@ export function playClick(scene) {
 
 export class GameAudio {
   static preload(scene) {
+    ThemeMusic.preload(scene);
     loadClick(scene);
     for (const name of names) {
       if (!scene.cache.audio.exists(`sfx-${name}`)) scene.load.audio(`sfx-${name}`, `${import.meta.env.BASE_URL}assets/audio/${name}.mp3`);
@@ -18,6 +21,7 @@ export class GameAudio {
 
   constructor(scene) {
     this.scene = scene;
+    ThemeMusic.start(scene);
     this.sounds = Object.fromEntries(names.filter(name => scene.cache.audio.exists(`sfx-${name}`))
       .map(name => [name, scene.sound.add(`sfx-${name}`, { loop: ['run', 'burn', 'tick'].includes(name), volume: 0 })]));
     this.reset();

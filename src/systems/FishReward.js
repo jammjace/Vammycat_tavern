@@ -30,17 +30,20 @@ export class FishReward {
     }
     this.halo=scene.add.image(640,330,'sun-halo').setDisplaySize(700,700).setAlpha(.7);
     this.shadow=scene.add.ellipse(640,459,215,35,0x071b20,.48);
-    this.fish=scene.add.image(640,330,'golden-fish');
+    this.fish=scene.add.image(640,330,'bite-closed');
     const text=(y,label,size)=>addChalkText(scene, 640,y,label,{fontFamily:'Eraser Dust',fontSize:`${size}px`,color:'#fff1c4',align:'center',letterSpacing:2}).setOrigin(.5);
     this.title=text(140,'FISH RETRIEVED!',44);
     this.caption=text(565,'A little patience. A little sunshine. A well-earned fish.',22);
     this.restart=text(622,'The garden awaits another adventure.',20);
-    this.root.add([this.backdrop,this.rays,this.halo,this.shadow,this.fish,this.title,this.caption,this.restart]);
+    this.root.add([this.backdrop,this.rays,this.halo,this.shadow,this.fish]);
+    // Text lives outside the container: a container renders on one camera, and text must sit on the unshaded text camera.
+    this.texts=[this.title,this.caption,this.restart];
+    for(const t of this.texts)t.setScrollFactor(0).setDepth(6001).setVisible(false);
   }
   show(worldFish) {
     const c=this.scene.cameras.main;
-    this.start={x:(worldFish.x-c.worldView.x)*c.zoom,y:(worldFish.y-c.worldView.y)*c.zoom,scale:worldFish.displayWidth/240*c.zoom};
-    this.elapsed=0;this.active=true;this.root.setVisible(true);this.update(0);
+    this.start={x:(worldFish.x-c.worldView.x)*c.zoom,y:(worldFish.y-c.worldView.y)*c.zoom,scale:worldFish.scaleX*c.zoom};
+    this.elapsed=0;this.active=true;this.root.setVisible(true);this.texts.forEach(t=>t.setVisible(true));this.update(0);
   }
   update(dt) {
     if(!this.active)return;
@@ -49,10 +52,10 @@ export class FishReward {
     this.backdrop.setAlpha(ease);this.rays.setAlpha(ease).setRotation(t*.12);
     this.halo.setAlpha(ease*.75);this.shadow.setAlpha(ease*.48);
     this.title.setAlpha(ease);this.caption.setAlpha(ease);this.restart.setAlpha(ease);
-    const spin=Math.max(0,t-1.05),scale=Phaser.Math.Linear(this.start.scale,1.45,ease);
+    const spin=Math.max(0,t-1.05),scale=Phaser.Math.Linear(this.start.scale,.44,ease);
     this.fish.setPosition(Phaser.Math.Linear(this.start.x,640,ease),Phaser.Math.Linear(this.start.y,330,ease)+Math.sin(spin*2)*12)
-      .setScale(scale*(progress<1?1:Math.cos(spin*1.35)),scale).setRotation(Math.sin(spin*.9)*.08);
+      .setScale(scale).setRotation(Math.sin(spin*.9)*.04);
     this.shadow.setScale(1-Math.sin(spin*2)*.07,1-Math.sin(spin*2)*.1);
   }
-  hide(){this.active=false;this.root.setVisible(false);}
+  hide(){this.active=false;this.root.setVisible(false);this.texts.forEach(t=>t.setVisible(false));}
 }
