@@ -1,3 +1,4 @@
+import { addChalkText } from '../art/ChalkText.js';
 export class BurnThermometer {
   constructor(scene) {
     const x = 430, y = 650, width = 420;
@@ -38,7 +39,7 @@ export class BurnThermometer {
     }
     this.liquid = scene.add.image(x, y, key).setOrigin(0, .5).setDepth(5111).setScrollFactor(0);
     this.flame = scene.add.graphics().setPosition(x, y).setDepth(5112).setScrollFactor(0);
-    this.label = scene.add.text(x + width / 2, y - 39, 'BURN', {fontFamily:'Real Chalk',letterSpacing:1.5,fontSize:'18px',color:'#f8e5ba'}).setOrigin(.5).setDepth(5110).setScrollFactor(0);
+    this.label = addChalkText(scene, x + width / 2, y - 39, 'BURN', {fontFamily:'Real Chalk',letterSpacing:1.5,fontSize:'18px',color:'#f8e5ba'}).setOrigin(.5).setDepth(5110).setScrollFactor(0);
     this.makeScreenHeat();
     this.tick = (_time, delta) => this.animate(Math.min((delta || 0) / 1000, .05));
     scene.events.on('postupdate', this.tick);
@@ -93,7 +94,7 @@ export class BurnThermometer {
       camera.shakeEffect.intensity.set(intensity, intensity * .8);
       this.shaking = true;
     } else if (this.shaking) {
-      camera.shakeEffect.reset();
+      camera?.shakeEffect?.reset();
       this.shaking = false;
     }
   }

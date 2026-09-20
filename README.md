@@ -1,3 +1,13 @@
+# Current progression
+
+VammyCat now opens with an intro, followed by two compact tutorial levels and the original Willowcross map as Level 3. See [the progression guide](docs/PROGRESSION.md) for architecture, controls, reset behavior and testing.
+
+Run `npm run dev`, `npm run build`, or `npm test` (requires installed Chrome).
+
+The original development notes below describe the earlier MVP and contain historical layouts and controls.
+
+---
+
 VammyCat
 
 VammyCat is a browser-based 2D top-down puzzle game built with Phaser 3 + WebGL + Vite.

@@ -4,6 +4,7 @@ export class ShadowSystem {
     this.texture=scene.textures.createCanvas('projected-shadows',scene.level.width,scene.level.height);
     this.image=scene.add.image(0,0,'projected-shadows').setOrigin(0).setDepth(4).setAlpha(.52);
     this.graphics=scene.add.graphics().setDepth(4000);
+    scene.events.once('shutdown',()=>scene.textures.remove('projected-shadows'));
   }
   registerCaster(caster){this.shadowCasters.push(caster);}
   setDebug(enabled){this.debug=enabled;this.lastPhase=undefined;}

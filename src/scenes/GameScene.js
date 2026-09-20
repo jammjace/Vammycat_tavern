@@ -1,3 +1,6 @@
+import { addChalkText, loadChalkText } from '../art/ChalkText.js';
+import { trackLoading } from '../loading.js';
+import { timed, record, trackPreload, trackFirstFrame } from '../startupTiming.js';
 import Phaser from 'phaser';
 import { FishReward } from '../systems/FishReward.js';
 import { Player } from '../entities/Player.js';
@@ -6,8 +9,8 @@ import { ShadowSystem } from '../systems/ShadowSystem.js';
 import { SunSystem } from '../systems/SunSystem.js';
 import { ExposureSystem } from '../systems/ExposureSystem.js';
 import { WindSystem } from '../systems/WindSystem.js';
-import { townPoint, groundPoint } from '../levels/level1.js';
-import { level1 } from '../levels/level1.js';
+import { townPoint, groundPoint } from '../levels/geometry.js';
+import { levels } from '../levels/levels.js';
 import { GardenArt } from '../art/GardenArt.js';
 import { CampbreezePipeline } from '../art/CampbreezePipeline.js';
 import { BurnThermometer } from '../systems/BurnThermometer.js';
@@ -18,16 +21,30 @@ export class GameScene extends Phaser.Scene {
     super('GameScene');
   }
 
+  init({ levelIndex = 0 } = {}) {
+    this.levelIndex = Phaser.Math.Clamp(levelIndex, 0, levels.length - 1);
+    this.level = levels[this.levelIndex];
+    this.transitionTimer = null;
+    this.paintPipeline = null;
+    this.uiPaintPipeline = null;
+  }
+
   preload() {
-    for (let i=1;i<=4;i++) this.load.image(`tree-${i}`, `${import.meta.env.BASE_URL}assets/scenery/tree-${i}.png`);
-    for (let i=1;i<=4;i++) this.load.image(`tree-${i}-layers`, `${import.meta.env.BASE_URL}assets/scenery/tree-${i}-layers.png`);
-    this.load.image('tree-art', `${import.meta.env.BASE_URL}assets/scenery/tree.png`);
-    this.load.image('house-art', `${import.meta.env.BASE_URL}assets/scenery/house.png`);
-    for (let i = 1; i <= 4; i++) this.load.image(`cat-${i}`, `${import.meta.env.BASE_URL}assets/cat/run-0${i}.png`);
+    trackPreload(this);
+    trackLoading(this);
+    loadChalkText(this, `level-${this.levelIndex}`);
+    const image = (key, path) => {
+      if (!this.textures.exists(key)) this.load.image(key, `${import.meta.env.BASE_URL}assets/${path}`);
+    };
+    for (const texture of new Set(this.level.treePositions.map(tree => tree.texture))) {
+      image(`${texture}-layers`, `scenery/${texture}-layers.png`);
+    }
+    if (this.level.buildingObjects.length) image('house-art', 'scenery/house.png');
+    for (let i = 1; i <= 4; i++) image(`cat-${i}`, `cat/run-0${i}.png`);
   }
 
   create() {
-    this.level = level1;
+    const createStart = performance.now();
     this.state = 'PLAYING';
     this.cursors = this.input.keyboard.createCursorKeys();
     this.wasd = this.input.keyboard.addKeys({
@@ -37,12 +54,12 @@ export class GameScene extends Phaser.Scene {
       right: Phaser.Input.Keyboard.KeyCodes.D,
     });
 
-    this.art = new GardenArt(this);
+    this.art = timed(`${this.startupTag}:art`, () => new GardenArt(this));
     this.player = new Player(this, this.level.start.x, this.level.start.y);
     this.sunSystem = new SunSystem(this);
     this.exposureSystem = new ExposureSystem(this);
     this.exposureSystem.burnRate = this.level.burnRate;
-    this.shadowCasters = this.level.shadowCasters.map((data) => {
+    this.shadowCasters = timed(`${this.startupTag}:alpha-masks`, () => this.level.shadowCasters.map((data) => {
       const caster = new ShadowCaster({
         ...data,
         scene: this,
@@ -52,20 +69,20 @@ export class GameScene extends Phaser.Scene {
         height: data.height,
       });
       return caster;
-    });
+    }));
 
-    this.shadowSystem = new ShadowSystem(this);
+    this.shadowSystem = timed(`${this.startupTag}:shadow-canvas`, () => new ShadowSystem(this));
     this.isInShadow = false;
-    this.collisionDebug = true;
+    this.collisionDebug = import.meta.env.DEV && (this.level.collisionDebug ?? true);
     this.collisionDebugGraphics = this.add.graphics().setDepth(4001);
     for (const caster of this.shadowCasters) {
       this.shadowSystem.registerCaster(caster);
     }
 
-    this.shadowSystem.update(this.sunSystem.sunPhase);
+    timed(`${this.startupTag}:shadow-initial-draw`, () => this.shadowSystem.update(this.sunSystem.sunPhase));
     this.isInShadow = this.shadowSystem.isPointInAnyShadow(this.player.getPosition());
 
-    this.safeText = this.add.text(20, 60, 'SAFE — IN SHADOW', {
+    this.safeText = addChalkText(this, 20, 60, 'SAFE — IN SHADOW', {
       fontFamily: 'Real Chalk', letterSpacing: 1.5,
       fontSize: '22px',
       color: '#dfffd7',
@@ -74,7 +91,7 @@ export class GameScene extends Phaser.Scene {
     });
     this.safeText.setDepth(100);
 
-    this.objectiveText = this.add.text(24, 110, 'RETRIEVE YOUR FISH\nScroll time to connect the shadows\nRest at roots & shaded benches', {
+    this.objectiveText = addChalkText(this, 24, 110, this.level.objective ?? 'RETRIEVE YOUR FISH\nScroll time to connect the shadows\nRest at roots & shaded benches', {
       fontFamily: 'Real Chalk', letterSpacing: 1.5,
       fontSize: '20px',
       color: '#f4f1d9',
@@ -88,7 +105,7 @@ export class GameScene extends Phaser.Scene {
 
     this.deathOverlay = this.add.rectangle(640, 360, 1280, 720, 0x9e2428, .5)
       .setScrollFactor(0).setDepth(6100).setVisible(false);
-    this.overlayText = this.add.text(640, 320, '', {
+    this.overlayText = addChalkText(this, 640, 320, '', {
       fontFamily: 'Real Chalk', letterSpacing: 1.5,
       fontSize: '42px',
       color: '#fce6a6',
@@ -100,7 +117,7 @@ export class GameScene extends Phaser.Scene {
     this.overlayText.setScrollFactor(0).setDepth(6101);
     this.overlayText.setVisible(false);
 
-    this.overlaySubText = this.add.text(640, 475, '', {
+    this.overlaySubText = addChalkText(this, 640, 475, '', {
       fontFamily: 'Real Chalk', letterSpacing: 1.5,
       fontSize: '20px',
       color: '#f3f0d8',
@@ -115,44 +132,57 @@ export class GameScene extends Phaser.Scene {
     this.createFish();
     this.windSystem = new WindSystem(this);
     this.reward = new FishReward(this);
-    this.add.text(24, 688, 'WASD / ARROWS  Move     SCROLL  Time     SHIFT + SCROLL  Zoom     R  Restart     F2  Debug', {
+    addChalkText(this, 24, 688, 'WASD / ARROWS  Move     SCROLL  Time     SHIFT + SCROLL  Zoom     R  Restart     F2  Debug', {
       fontFamily: 'Real Chalk', letterSpacing: 1.5, fontSize: '13px', color: '#e3e7c4', backgroundColor: '#253c2ddd', padding: { x: 10, y: 5 },
     }).setDepth(100);
 
-    this.input.on('wheel', (_pointer, _currentlyOver, _deltaX, deltaY, _deltaZ) => {
+    const onWheel = (_pointer, _currentlyOver, _deltaX, deltaY, _deltaZ) => {
       if (_pointer.event.shiftKey || _pointer.event.ctrlKey) {
         this.setMapZoom(this.cameras.main.zoom * Math.exp(-deltaY * .001));
         return;
       }
       if (this.state !== 'PLAYING') return;
       this.sunSystem.adjust(deltaY * 0.0007);
-    });
+    };
+    this.input.on('wheel', onWheel);
 
-    this.input.keyboard.on('keydown-U', () => {
+    const earlier = () => {
       if (this.state === 'PLAYING') this.sunSystem.adjust(-0.05);
-    });
-    this.input.keyboard.on('keydown-H', () => {
+    };
+    const later = () => {
       if (this.state === 'PLAYING') this.sunSystem.adjust(0.05);
+    };
+    const bindings = {
+      'keydown-U': earlier, 'keydown-H': later,
+      'keydown-F2': () => this.debugPanel?.toggle(),
+      'keydown-R': () => this.resetLevel(),
+    };
+    for (const [event, handler] of Object.entries(bindings)) this.input.keyboard.on(event, handler);
+    this.events.once('shutdown', () => {
+      this.transitionTimer?.remove(false);
+      this.input.off('wheel', onWheel);
+      for (const [event, handler] of Object.entries(bindings)) this.input.keyboard.off(event, handler);
     });
-    this.input.keyboard.on('keydown-F2', () => {
-      this.debugPanel.toggle();
-    });
-    this.input.keyboard.on('keydown-R', () => this.resetLevel());
     for (const object of this.children.list) {
       if (object.depth >= 100 && object.depth <= 120) object.setScrollFactor(0).setDepth(5000 + object.depth);
     }
     this.cameras.main.setBounds(0, 0, this.level.width, this.level.height);
-    this.cameras.main.startFollow(this.player.sprite, true, .08, .08);
-    this.cameras.main.centerOn(this.player.sprite.x, this.player.sprite.y);
+    if (this.level.cameraFollow !== false) {
+      this.cameras.main.startFollow(this.player.sprite, true, .08, .08);
+      this.cameras.main.centerOn(this.player.sprite.x, this.player.sprite.y);
+    } else {
+      this.cameras.main.centerOn(this.level.width / 2, this.level.height / 2);
+    }
     this.art.update(this.sunSystem);
     this.updateSafetyStatus(this.isInShadow);
     this.updateExposureBar();
-    // A separate unzoomed UI camera keeps the clock and status fixed under the painterly shader.
+    // Separate cameras keep HUD positioning independent of map zoom.
     const uiObjects=this.children.list.filter(object=>object.depth>=5000);
     const worldObjects=this.children.list.filter(object=>object.depth<5000);
     this.cameras.main.ignore(uiObjects);
     this.uiCamera=this.cameras.add(0,0,1280,720,false,'UI');
     this.uiCamera.ignore(worldObjects);
+    const shaderStart = performance.now();
     if(this.renderer.type===Phaser.WEBGL){
       if(!this.renderer.pipelines.postPipelineClasses.has('Campbreeze'))this.renderer.pipelines.addPostPipeline('Campbreeze',CampbreezePipeline);
       this.cameras.main.setPostPipeline('Campbreeze');
@@ -161,9 +191,12 @@ export class GameScene extends Phaser.Scene {
       this.uiPaintPipeline=this.uiCamera.getPostPipeline('Campbreeze');
       this.uiPaintPipeline.sourceCamera=this.uiCamera;
     }
-    this.debugPanel=new DebugPanel(this);
-    this.debugPanel.update();
+    record(`${this.startupTag}:shader-setup`, shaderStart);
+    this.debugPanel=import.meta.env.DEV ? new DebugPanel(this) : null;
+    this.debugPanel?.update();
     this.updateCollisionDebug();
+    record(`${this.startupTag}:create`, createStart);
+    trackFirstFrame(this);
   }
 
   setMapZoom(value) {
@@ -181,16 +214,20 @@ export class GameScene extends Phaser.Scene {
 
 
   resetLevel() {
+    this.transitionTimer?.remove(false);
+    this.transitionTimer = null;
     this.reward.hide();
     this.deathOverlay.setVisible(false);
+    this.deathOverlay.setFillStyle(0x9e2428, .5);
     this.state = 'PLAYING';
     this.player.setPosition(this.level.start.x, this.level.start.y);
     this.player.sprite.setVisible(true);
     this.exposureSystem.reset();
-    this.sunSystem.sunPhase = -5/6;
-    this.sunSystem.targetPhase = -5/6;
+    this.sunSystem.sunPhase = this.level.startPhase ?? -5/6;
+    this.sunSystem.targetPhase = this.sunSystem.sunPhase;
     this.sunSystem.updateSunPosition();
     this.art.update(this.sunSystem);
+    this.shadowSystem.lastPhase = undefined;
     this.shadowSystem.update(this.sunSystem.sunPhase);
     this.isInShadow = this.shadowSystem.isPointInAnyShadow(this.player.getPosition());
 
@@ -199,7 +236,11 @@ export class GameScene extends Phaser.Scene {
 
     this.overlayText.setVisible(false);
     this.overlaySubText.setVisible(false);
+    this.player.trail.clear();
+    this.player.sparkleClock = 0;
+    this.updateSafetyStatus(this.isInShadow);
     this.updateExposureBar();
+    this.updateCollisionDebug();
   }
 
   update(_time, delta) {
@@ -264,15 +305,28 @@ export class GameScene extends Phaser.Scene {
     if (distance <= fish.radius + this.player.radius + 6) {
       this.state = 'WON';
       this.player.stop();
-      this.reward.show(this.fishBody);
+      if (this.levelIndex === levels.length - 1) {
+        this.reward.show(this.fishBody);
+      } else {
+        this.state = 'LEVEL_COMPLETE';
+        this.deathOverlay.setFillStyle(0x172a29, .86).setVisible(true);
+        this.overlayText.setText('LEVEL COMPLETE\nFISH RETRIEVED!').setVisible(true);
+        this.overlaySubText.setText(`Next: ${levels[this.levelIndex + 1].name}`).setVisible(true);
+        // Restart the shared scene to rebuild cameras, effects and world canvases.
+        this.transitionTimer = this.time.delayedCall(1800, () => {
+          this.scene.restart({ levelIndex: this.levelIndex + 1 });
+        });
+      }
       this.fishGlow.setVisible(false);
       this.fishBody.setVisible(false);
     }
   }
 
   updateSafetyStatus(isInShadow) {
-    this.safeText.setText(isInShadow ? 'SAFE — IN SHADOW' : 'SCALDING!');
-    this.safeText.setColor(isInShadow ? '#dfffd7' : '#ffb3b3');
+    const text = isInShadow ? 'SAFE — IN SHADOW' : 'SCALDING!';
+    const color = isInShadow ? '#dfffd7' : '#ffb3b3';
+    if (this.safeText.text !== text) this.safeText.setText(text);
+    if (this.safeText.style.color !== color) this.safeText.setColor(color);
   }
 
   updateExposureBar() {

@@ -6,9 +6,17 @@
     <title>VammyCat</title>
     <link rel="icon" href="data:," />
     <meta name="description" content="VammyCat prototype" />
+    <link rel="preload" href="%BASE_URL%assets/fonts/real-chalk.otf" as="font" type="font/otf" crossorigin />
+    <style>
+      #loading { position:fixed; inset:0; z-index:100; display:grid; place-content:center; text-align:center; background:#253c2d; color:#f4e9bf; font:20px Georgia,serif; }
+      #loading[hidden] { display:none; }
+      #loading h1 { margin:0 0 12px; font-size:44px; letter-spacing:5px; }
+      #loading progress { width:260px; height:8px; margin:12px auto; accent-color:#b7b875; }
+    </style>
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
   <body>
+    <div id="loading" role="status" aria-live="polite"><h1>VAMMYCAT</h1><p>waking from the shadows...</p><progress max="1" aria-label="Loading"></progress></div>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>

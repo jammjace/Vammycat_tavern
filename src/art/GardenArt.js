@@ -1,13 +1,28 @@
+import { addChalkText } from './ChalkText.js';
 import { makeTreeLayers } from './TreeLayers.js';
-import { townPoint, windSway } from '../levels/level1.js';
+import { townPoint, windSway } from '../levels/geometry.js';
 
 export class GardenArt {
-  constructor(scene){this.scene=scene;this.seed=731;this.props=[];this.makeGround();this.makeObjects();this.makeLight();}
+  constructor(scene){
+    this.scene=scene;this.seed=731;this.props=[];
+    this.groundKey=`garden-grass-${scene.level.id}`;
+    this.makeGround();this.makeObjects();this.makeLight();
+  }
   random(){this.seed=(Math.imul(this.seed,1664525)+1013904223)>>>0;return this.seed/4294967296;}
-  texture(key,w,h,draw){if(this.scene.textures.exists(key))return;const t=this.scene.textures.createCanvas(key,w,h);draw(t.context);t.refresh();}
+  texture(key,w,h,draw,seeded=false){
+    if(this.scene.textures.exists(key)){
+      const t=this.scene.textures.get(key);
+      // Preserve the random sequence used by subsequent decorations on restart.
+      if(seeded)this.seed=t.gardenSeedAfter;
+      return t;
+    }
+    const t=this.scene.textures.createCanvas(key,w,h);draw(t.context);
+    if(seeded)t.gardenSeedAfter=this.seed;
+    t.refresh();return t;
+  }
   makeGround(){
     const s=this.scene,{width:w,height:h}=s.level;
-    this.texture('garden-grass',w,h,c=>{
+    this.texture(this.groundKey,w,h,c=>{
       c.fillStyle='#849044';c.fillRect(0,0,w,h);
       for(let i=0;i<1100;i++){
         const x=this.random()*w,y=this.random()*h,r=30+this.random()*130,g=c.createRadialGradient(x,y,0,x,y,r);
@@ -21,7 +36,7 @@ export class GardenArt {
       const quad=(x,y,w,h)=>{
         c.beginPath();[[x,y],[x+w,y],[x+w,y+h],[x,y+h]].forEach(([a,b],i)=>{const p=townPoint(a,b);i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y);});c.closePath();
       };
-      for(const r of [...s.level.roads,s.level.square,...s.level.entrances]){
+      for(const r of [...s.level.roads,s.level.square,...s.level.entrances].filter(Boolean)){
         const left=r.x-r.width/2,top=r.y-r.height/2;
         c.fillStyle='#6c7045';quad(left-5,top-5,r.width+10,r.height+10);c.fill();
         c.fillStyle='#b4aa7c';quad(left,top,r.width,r.height);c.fill();
@@ -29,7 +44,7 @@ export class GardenArt {
         for(let y=top;y<top+r.height;y+=24)for(let x=left;x<left+r.width;x+=42){quad(x,y,40,22);c.stroke();}c.restore();
       }
       for(let i=0;i<2000;i++){c.fillStyle=i%2?'#ded09033':'#3e572822';c.fillRect(this.random()*w,this.random()*h,2,2);}
-    });s.add.image(0,0,'garden-grass').setOrigin(0).setDepth(0);
+    },true);s.add.image(0,0,this.groundKey).setOrigin(0).setDepth(0);
   }
   makeObjects(){
     const s=this.scene;
@@ -46,9 +61,10 @@ export class GardenArt {
       const sprite=s.add.image(data.x,data.y,isTree?`${data.texture}-foliage`:data.texture).setOrigin(.5,data.anchorY).setDisplaySize(data.width,data.height).setDepth(data.y+10);
       this.props.push({sprite,bark,...data});
     }
-    for(const b of s.level.buildingObjects)s.add.text(b.x,b.y+60,b.name,{fontFamily:'Real Chalk',letterSpacing:1.5,fontSize:'15px',color:'#f1e1ad',backgroundColor:'#3c4934dd',padding:{x:8,y:4}}).setOrigin(.5).setDepth(15);
-    const water=s.level.waterZones[0];
-    this.texture('garden-pond',300,170,c=>{
+    for(const b of s.level.buildingObjects)addChalkText(s, b.x,b.y+60,b.name,{fontFamily:'Real Chalk',letterSpacing:1.5,fontSize:'15px',color:'#f1e1ad',backgroundColor:'#3c4934dd',padding:{x:8,y:4}}).setOrigin(.5).setDepth(15);
+    for(const [index,water] of s.level.waterZones.entries()){
+    const key=`garden-pond-${s.level.id}-${index}`;
+    this.texture(key,300,170,c=>{
       c.translate(150,85);c.transform(.7071,.35355,-.7071,.35355,0,0);
       c.fillStyle='#526340';c.fillRect(-water.width/2-12,-water.height/2-12,water.width+24,water.height+24);
       c.fillStyle='#cfbe88';c.fillRect(-water.width/2-7,-water.height/2-7,water.width+14,water.height+14);
@@ -57,7 +73,8 @@ export class GardenArt {
       c.save();c.beginPath();c.rect(-water.width/2,-water.height/2,water.width,water.height);c.clip();
       c.strokeStyle='#ced9ac88';c.lineWidth=2;
       for(let i=0;i<45;i++){const x=(this.random()-.5)*water.width,y=(this.random()-.5)*water.height;c.beginPath();c.ellipse(x,y,4+this.random()*17,2,0,0,Math.PI);c.stroke();}c.restore();
-    });s.add.image(water.x,water.y,'garden-pond').setDepth(2);
+    },true);s.add.image(water.x,water.y,key).setDepth(2);
+    }
   }
 
   makeLight(){

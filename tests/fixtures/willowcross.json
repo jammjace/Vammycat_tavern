@@ -1,0 +1,321 @@
+{
+  "name": "Willowcross · The sundial garden",
+  "width": 2400,
+  "height": 1600,
+  "start": {
+    "x": 150,
+    "y": 900
+  },
+  "goal": {
+    "x": 1940,
+    "y": 900
+  },
+  "burnRate": 1.2,
+  "entrances": [],
+  "roads": [
+    {
+      "x": 1171.715457502475,
+      "y": 941.4227124876255,
+      "width": 2450,
+      "height": 115
+    },
+    {
+      "x": 1171.715457502475,
+      "y": 941.4227124876255,
+      "width": 115,
+      "height": 1350
+    }
+  ],
+  "square": {
+    "x": 2317.2394286522417,
+    "y": 672.719558761137,
+    "width": 390,
+    "height": 300
+  },
+  "treePositions": [
+    {
+      "x": 450,
+      "y": 700,
+      "width": 360,
+      "height": 400,
+      "texture": "tree-1"
+    },
+    {
+      "x": 1000,
+      "y": 700,
+      "width": 440,
+      "height": 400,
+      "texture": "tree-2"
+    },
+    {
+      "x": 1550,
+      "y": 700,
+      "width": 380,
+      "height": 420,
+      "texture": "tree-4"
+    },
+    {
+      "x": 2150,
+      "y": 420,
+      "width": 220,
+      "height": 300,
+      "texture": "tree-3"
+    }
+  ],
+  "buildingObjects": [
+    {
+      "x": 300,
+      "y": 290,
+      "width": 300,
+      "height": 245,
+      "name": "BAKERY"
+    },
+    {
+      "x": 800,
+      "y": 290,
+      "width": 300,
+      "height": 245,
+      "name": "COTTAGE"
+    },
+    {
+      "x": 1300,
+      "y": 290,
+      "width": 300,
+      "height": 245,
+      "name": "TAVERN"
+    },
+    {
+      "x": 1800,
+      "y": 290,
+      "width": 300,
+      "height": 245,
+      "name": "WORKSHOP"
+    }
+  ],
+  "benchObjects": [
+    {
+      "x": 725,
+      "y": 900,
+      "width": 170,
+      "height": 85
+    },
+    {
+      "x": 1275,
+      "y": 900,
+      "width": 170,
+      "height": 85
+    }
+  ],
+  "shadowCasters": [
+    {
+      "x": 450,
+      "y": 700,
+      "width": 360,
+      "height": 400,
+      "texture": "tree-1",
+      "anchorY": 0.96
+    },
+    {
+      "x": 1000,
+      "y": 700,
+      "width": 440,
+      "height": 400,
+      "texture": "tree-2",
+      "anchorY": 0.96
+    },
+    {
+      "x": 1550,
+      "y": 700,
+      "width": 380,
+      "height": 420,
+      "texture": "tree-4",
+      "anchorY": 0.96
+    },
+    {
+      "x": 2150,
+      "y": 420,
+      "width": 220,
+      "height": 300,
+      "texture": "tree-3",
+      "anchorY": 0.96
+    },
+    {
+      "x": 300,
+      "y": 290,
+      "width": 300,
+      "height": 245,
+      "name": "BAKERY",
+      "texture": "house-art",
+      "anchorY": 0.92
+    },
+    {
+      "x": 800,
+      "y": 290,
+      "width": 300,
+      "height": 245,
+      "name": "COTTAGE",
+      "texture": "house-art",
+      "anchorY": 0.92
+    },
+    {
+      "x": 1300,
+      "y": 290,
+      "width": 300,
+      "height": 245,
+      "name": "TAVERN",
+      "texture": "house-art",
+      "anchorY": 0.92
+    },
+    {
+      "x": 1800,
+      "y": 290,
+      "width": 300,
+      "height": 245,
+      "name": "WORKSHOP",
+      "texture": "house-art",
+      "anchorY": 0.92
+    },
+    {
+      "x": 725,
+      "y": 900,
+      "width": 170,
+      "height": 85,
+      "texture": "bench-art",
+      "anchorY": 0.94
+    },
+    {
+      "x": 1275,
+      "y": 900,
+      "width": 170,
+      "height": 85,
+      "texture": "bench-art",
+      "anchorY": 0.94
+    }
+  ],
+  "solidObstacles": [
+    {
+      "type": "TREE",
+      "x": 450,
+      "y": 695,
+      "radius": 14,
+      "blocksMovement": true
+    },
+    {
+      "type": "TREE",
+      "x": 1000,
+      "y": 695,
+      "radius": 14,
+      "blocksMovement": true
+    },
+    {
+      "type": "TREE",
+      "x": 1550,
+      "y": 695,
+      "radius": 14,
+      "blocksMovement": true
+    },
+    {
+      "type": "TREE",
+      "x": 2150,
+      "y": 415,
+      "radius": 14,
+      "blocksMovement": true
+    },
+    {
+      "type": "BUILDING",
+      "x": 300,
+      "y": 255,
+      "width": 200,
+      "height": 85,
+      "blocksMovement": true
+    },
+    {
+      "type": "BUILDING",
+      "x": 800,
+      "y": 255,
+      "width": 200,
+      "height": 85,
+      "blocksMovement": true
+    },
+    {
+      "type": "BUILDING",
+      "x": 1300,
+      "y": 255,
+      "width": 200,
+      "height": 85,
+      "blocksMovement": true
+    },
+    {
+      "type": "BUILDING",
+      "x": 1800,
+      "y": 255,
+      "width": 200,
+      "height": 85,
+      "blocksMovement": true
+    },
+    {
+      "type": "BENCH",
+      "x": 725,
+      "y": 870,
+      "width": 135,
+      "height": 22,
+      "blocksMovement": true
+    },
+    {
+      "type": "BENCH",
+      "x": 1275,
+      "y": 870,
+      "width": 135,
+      "height": 22,
+      "blocksMovement": true
+    }
+  ],
+  "waterZones": [
+    {
+      "x": 2080,
+      "y": 1150,
+      "width": 200,
+      "height": 150,
+      "groundX": 2317.2394286522417,
+      "groundY": 672.719558761137
+    }
+  ],
+  "platforms": [],
+  "shadowRoute": [
+    {
+      "x": 150,
+      "y": 900,
+      "phase": -0.8333333333333334
+    },
+    {
+      "x": 490,
+      "y": 715,
+      "phase": -0.8333333333333334
+    },
+    {
+      "x": 725,
+      "y": 900,
+      "phase": 0.8333333333333334
+    },
+    {
+      "x": 1040,
+      "y": 715,
+      "phase": -0.8333333333333334
+    },
+    {
+      "x": 1275,
+      "y": 900,
+      "phase": 0.8333333333333334
+    },
+    {
+      "x": 1590,
+      "y": 715,
+      "phase": -0.8333333333333334
+    },
+    {
+      "x": 1940,
+      "y": 900,
+      "phase": 0.8333333333333334
+    }
+  ]
+}

@@ -11,6 +11,8 @@ export class DebugPanel {
       <small>Shift + scroll: zoom · Scroll: time<br>Red: solid · Cyan: water · Gold: cat / fish<br>Tree circles cover trunks only; roots are walkable.</small>
       <output></output></details>`;
     document.querySelector('#app').append(panel);this.element=panel;
+    panel.querySelector('details').open=scene.level.debugVisible ?? true;
+    panel.querySelector('[data-option="hitboxes"]').checked=scene.collisionDebug;
     panel.querySelector('[data-option="hitboxes"]').onchange=e=>{scene.collisionDebug=e.target.checked;scene.updateCollisionDebug();};
     panel.querySelector('[data-option="shadows"]').onchange=e=>scene.shadowSystem.setDebug(e.target.checked);
     panel.querySelector('[data-option="paint"]').onchange=e=>{for(const pipeline of [scene.paintPipeline,scene.uiPaintPipeline])if(pipeline)pipeline.paintEnabled=e.target.checked;};

@@ -12,6 +12,9 @@ dist/
 build/
 .vite/
 coverage/
+test-results/
+performance-results/
+playwright-report/
 
 # Editor / OS files
 .vscode/

@@ -1,9 +1,10 @@
+import { addChalkText } from '../art/ChalkText.js';
 import Phaser from 'phaser';
 export class SunSystem {
   constructor(scene) {
-    this.scene=scene;this.sunPhase=this.targetPhase=-5/6;this.sun={x:0,y:0};
+    this.scene=scene;this.sunPhase=this.targetPhase=scene.level.startPhase ?? -5/6;this.sun={x:0,y:0};
     this.uiText=scene.add.graphics().setDepth(5000).setScrollFactor(0);
-    this.caption=scene.add.text(640,88,'SCROLL TO CHANGE TIME',{
+    this.caption=addChalkText(scene, 640,88,'SCROLL TO CHANGE TIME',{
       fontFamily:'Real Chalk',letterSpacing:1.5,fontSize:'16px',color:'#efe8c7',backgroundColor:'#24372ebb',padding:{x:10,y:4},
     }).setOrigin(.5,0).setDepth(5000).setScrollFactor(0);
     this.updateSunPosition();

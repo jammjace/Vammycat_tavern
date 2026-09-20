@@ -1,21 +1,18 @@
-import { windSway } from '../levels/level1.js';
+import { windSway } from '../levels/geometry.js';
+import { shadowSource, restSilhouette } from '../art/ShadowSourceCache.js';
 export class ShadowCaster {
   constructor({scene,x,y,width,height,texture,anchorY=1}){
     Object.assign(this,{scene,x,y,width,height,texture,anchorY});
     this.isTree=texture.startsWith('tree-');
     this.layers=(this.isTree?[`${texture}-wood`,`${texture}-foliage`]:[texture]).map(key=>{
       const source=scene.textures.get(key).getSourceImage();
-      const canvas=document.createElement('canvas');canvas.width=source.width;canvas.height=source.height;
-      const c=canvas.getContext('2d',{willReadFrequently:true});c.drawImage(source,0,0);
-      return {source,alpha:c.getImageData(0,0,canvas.width,canvas.height).data};
+      return {...shadowSource(source)};
     });
-    // Retain the combined rest silhouette for inspection/debugging.
-    this.source=document.createElement('canvas');
-    this.source.width=this.layers[0].source.width;this.source.height=this.layers[0].source.height;
-    const c=this.source.getContext('2d');for(const layer of this.layers)c.drawImage(layer.source,0,0);
-    this.alpha=c.getImageData(0,0,this.source.width,this.source.height).data;
     this.setShadowDirection(-5/6);
   }
+  // The combined silhouette is diagnostic only; construct it on first inspection.
+  get source(){return restSilhouette(this.layers).source;}
+  get alpha(){return restSilhouette(this.layers).alpha;}
   setShadowDirection(phase){
     const elevation=Math.max(.17,Math.sin((phase+1)*Math.PI/2)*1.22);
     const length=Math.min(this.height*1.9,this.height*.7/Math.tan(elevation));
