@@ -65,9 +65,7 @@ test('intro, playable tutorial routes, clean transitions and final reward', asyn
     const s = await inspect();
     expect(s).toMatchObject({ index, state: 'PLAYING', clock: '07:00',
       target: -5 / 6, fish: true, panels: 1, cameras: 3, zoom: 1, uiZoom: 1 });
-    // The unchanged Willowcross spawn is not sheltered at every sway phase.
-    // Its zeroed entry/reset state is checked synchronously below instead.
-    if (index < 2) expect(s).toMatchObject({ safe: true, exposure: 0, heat: 0 });
+    expect(s).toMatchObject({ safe: true, exposure: 0, heat: 0 });
     expect(s.bounds).toEqual({ width: s.width, height: s.height });
     expect(s.groundWidth).toBe(s.width);
     return s;
@@ -132,9 +130,67 @@ test('intro, playable tutorial routes, clean transitions and final reward', asyn
   await page.getByRole('button', { name: 'Next Level', exact: true }).click();
   await ready(page, 2);
   expect(await page.evaluate(() => window.levelEntry)).toEqual({ exposure: 0, heat: 0,
-    phase: -5 / 6, target: -5 / 6, sparks: 0, position: { x: 150, y: 900 }, fish: true, state: 'PLAYING' });
+    phase: -5 / 6, target: -5 / 6, sparks: 0, position: { x: 95, y: 900 }, fish: true, state: 'PLAYING' });
   expect(await fresh(2)).toMatchObject({ trees: 4, water: 1, houses: 4, benches: 2, width: 2400, height: 1600 });
+  await page.evaluate(() => game.loop.start(game.loop.callback));
+  await expect(page.locator('#loading')).toBeHidden();
   await page.screenshot({ path: testInfo.outputPath('willowcross.png') });
+  await page.evaluate(() => game.loop.stop());
+
+  // Use the loaded source-image alpha masks and production inverse projection.
+  // Both wind frequencies repeat after 20*pi seconds; sample the whole cycle
+  // and an 8px neighborhood, not just the logical point at one lucky phase.
+  expect(await page.evaluate(() => {
+    const s = game.scene.getScene('GameScene'), start = s.level.start;
+    const caster = s.shadowCasters[0], previousTime = s.time.now;
+    let sheltered = true, clear = true;
+    for (let t = 0; t <= 20000 * Math.PI; t += 20) {
+      s.time.now = t;
+      caster.setShadowDirection(s.sunSystem.sunPhase);
+      for (let dx = -8; dx <= 8; dx += 2) for (let dy = -8; dy <= 8; dy += 2) {
+        const point = { x: start.x + dx, y: start.y + dy };
+        sheltered &&= caster.contains(point) && s.shadowSystem.isPointInAnyShadow(point);
+        clear &&= !s.isPositionBlocked(point.x, point.y, s.player.radius);
+      }
+    }
+    s.time.now = previousTime;
+    caster.setShadowDirection(s.sunSystem.sunPhase);
+    return { sheltered, clear, texture: caster.texture, x: caster.x, y: caster.y,
+      inBounds: start.x - 8 >= 40 && start.x + 8 <= s.level.width - 40 };
+  })).toEqual({ sheltered: true, clear: true, texture: 'tree-1', x: 450, y: 700, inBounds: true });
+
+  const stationary = async () => {
+    const result = await page.evaluate(() => {
+      const s = game.scene.getScene('GameScene'); game.loop.stop();
+      let safe = true, peak = 0;
+      for (let i = 0; i < 600; i++) {
+        s.time.now += 1000 / 60;
+        s.update(s.time.now, 1000 / 60);
+        safe &&= s.isInShadow;
+        peak = Math.max(peak, s.exposureSystem.currentExposure);
+      }
+      return { safe, peak, state: s.state, position: s.player.getPosition(),
+        clock: s.sunSystem.uiText.text, hud: s.safeText.text, heat: s.thermometer.heat };
+    });
+    expect(result).toMatchObject({ safe: true, peak: 0, state: 'PLAYING',
+      position: { x: 95, y: 900 }, clock: '07:00', heat: 0 });
+    expect(result.hud).toContain('IN SHADOW');
+  };
+  await stationary();
+  // Move normally out of shelter; collisions and exposure remain enabled.
+  const exit = await walk(page, [{ x: 180, y: 900 }]);
+  expect(exit.at(-1)).toMatchObject({ state: 'PLAYING', safe: false });
+  expect(exit.at(-1).position.x).toBeGreaterThan(170);
+  expect(exit.at(-1).peak).toBeGreaterThan(0);
+  expect(await page.evaluate(() => {
+    const s = game.scene.getScene('GameScene'), tree = s.level.solidObstacles[0];
+    s.player.setPosition(tree.x - tree.radius - s.player.radius - 1, tree.y);
+    s.player.update({ left: {}, right: { isDown: true }, up: {}, down: {} }, 1 / 60);
+    return { x: s.player.getPosition().x, blocker: s.lastMovementDebug.blockedBy };
+  })).toEqual({ x: 417, blocker: 'TREE' });
+  await page.getByRole('button', { name: 'Restart', exact: true }).click();
+  await fresh(2);
+  await stationary();
 
   // Fixture placement below tests terminal states, not final-map playability.
   const death = await page.evaluate(() => {
@@ -165,7 +221,7 @@ test('intro, playable tutorial routes, clean transitions and final reward', asyn
     const s = game.scene.getScene('GameScene'); game.loop.stop();
     s.player.setPosition(s.level.goal.x, s.level.goal.y);
     s.exposureSystem.reset();
-    s.checkFishPickup(); s.reward.update(1.5); s.update(s.time.now, 50);
+    s.checkFishPickup(); s.updateBite(1.25); s.reward.update(1.5); s.update(s.time.now, 50);
     return { state: s.state, reward: s.reward.active, fish: s.fishBody.visible, exposure: s.exposureSystem.currentExposure };
   });
   expect(victory).toEqual({ state: 'WON', reward: true, fish: false, exposure: 0 });

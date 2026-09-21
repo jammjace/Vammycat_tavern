@@ -19,7 +19,8 @@ const road=(x,y,width,height)=>({...groundPoint(x,y),width,height});
 export const level3={
   id: 'willowcross',
   name:'Willowcross · The sundial garden',width:2400,height:1600,
-  start:{x:150,y:900},goal:{x:1940,y:900},burnRate:1.2,
+  // Inside tree-1's 07:00 alpha shadow, with clearance through foliage sway.
+  start:{x:95,y:900},goal:{x:1940,y:900},burnRate:1.2,
   entrances:[],
   roads:[road(1080,840,2450,115),road(1080,840,115,1350)],
   square:road(2080,1150,390,300),
